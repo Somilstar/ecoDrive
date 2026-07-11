@@ -12,39 +12,60 @@ const generateToken = (id) => {
 // @access  Public
 const registerUser = async (req, res) => {
   try {
-    const { email, password, firstName, lastName, defaultAddress } = req.body;
+    // Destructuring fields that match your teammate's schema
+    const { email, password, firstName, lastName, shippingAddress, billingAddress } = req.body;
 
-    // Check if the user account already exists in the cluster
-    const userExists = await User.findOne({ email });
+    // 1. Input Payload Validation
+    if (!email || !password || !firstName || !lastName) {
+      return res.status(400).json({ 
+        status: 'Failure', 
+        message: 'email, password, firstName, and lastName fields are strictly required.' 
+      });
+    }
+
+    // 2. Data Normalization
+    const normalizedEmail = email.toLowerCase().trim();
+
+    
+    const userExists = await User.findOne({ email: normalizedEmail });
     if (userExists) {
       return res.status(400).json({ status: 'Failure', message: 'An account with this email already exists.' });
     }
 
-    // Generate cryptographic salt and hash the plain text password
+    
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Persist new user account profile to MongoDB
+    
     const user = await User.create({
-      email,
+      email: normalizedEmail,
       password: hashedPassword,
-      firstName,
-      lastName,
-      defaultAddress: defaultAddress || {}
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+      shippingAddress: shippingAddress || {},
+      billingAddress: billingAddress || {}
     });
 
     if (user) {
-      res.status(201).json({
+      return res.status(201).json({
         status: 'Success',
-        _id: user._id,
+        id: user.id, 
         email: user.email,
         firstName: user.firstName,
         role: user.role,
-        token: generateToken(user._id) // Automatically log them in by returning a token
+        token: generateToken(user.id)
       });
     }
   } catch (error) {
-    res.status(500).json({ status: 'Failure', message: error.message });
+    
+    if (error?.code === 11000) {
+      return res.status(400).json({ status: 'Failure', message: 'An account with this email already exists.' });
+    }
+    if (error?.name === 'ValidationError') {
+      return res.status(400).json({ status: 'Failure', message: error.message });
+    }
+    console.error('Register Error Logged:', error);
+    return res.status(500).json({ status: 'Failure', message: 'Internal server error processing registration.' });
   }
 };
 
@@ -55,29 +76,37 @@ const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Query database for the user record
-    const user = await User.findOne({ email });
+    // 1. Validate Input Payload
+    if (!email || !password) {
+      return res.status(400).json({ status: 'Failure', message: 'Both email and password elements are required.' });
+    }
+
+    // 2. Query Account with explicit Password inclusion (+password bypasses select: false)
+    const normalizedEmail = email.toLowerCase().trim();
+    const user = await User.findOne({ email: normalizedEmail }).select('+password');
+    
     if (!user) {
       return res.status(401).json({ status: 'Failure', message: 'Invalid email or password credentials.' });
     }
 
-    // Compare incoming plain-text input against stored hashed password string
+    // 3. Cryptographic Hash Assessment
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
       return res.status(401).json({ status: 'Failure', message: 'Invalid email or password credentials.' });
     }
 
-    // Authentication successful: issue payload token
-    res.status(200).json({
+    // 4. Authentication Passed: Return Stateful Configuration Values
+    return res.status(200).json({
       status: 'Success',
-      _id: user._id,
+      id: user.id,
       email: user.email,
       firstName: user.firstName,
       role: user.role,
-      token: generateToken(user._id)
+      token: generateToken(user.id)
     });
   } catch (error) {
-    res.status(500).json({ status: 'Failure', message: error.message });
+    console.error('Login Error Logged:', error);
+    return res.status(500).json({ status: 'Failure', message: 'Internal server error processing verification authentication.' });
   }
 };
 
