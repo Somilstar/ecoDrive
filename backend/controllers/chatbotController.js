@@ -1,4 +1,6 @@
-// @desc    Process client messaging inputs & map navigational paths
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+
+// @desc    Process client messaging inputs & map navigational paths using AI
 // @route   POST /api/chatbot/message
 // @access  Public
 const handleChatbotMessage = async (req, res) => {
@@ -9,31 +11,47 @@ const handleChatbotMessage = async (req, res) => {
       return res.status(400).json({ status: "Failure", message: "Message content cannot be blank." });
     }
 
-    const input = message.toLowerCase();
-    let reply = "I'm sorry, I'm basic and still learning! Try asking about 'catalog', 'login', 'support', 'checkout', or a specific brand like 'Tesla' or 'Porsche'.";
-    let redirectUrl = null;
+    // 1. Initialize the Gemini AI Client
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-    // Tokenization and trigger matching system to extract navigation intents
-    if (input.includes("catalog") || input.includes("browse") || input.includes("cars") || input.includes("vehicles")) {
-      reply = "Sure! I can help you look at our inventory. Let's take you over to our electric vehicle catalog page.";
-      redirectUrl = "/index.html";
-    } else if (input.includes("login") || input.includes("signin") || input.includes("account") || input.includes("register")) {
-      reply = "No problem. Let's get you authenticated. Heading over to the account gateway.";
-      redirectUrl = "/login.html";
-    } else if (input.includes("checkout") || input.includes("buy") || input.includes("cart") || input.includes("purchase")) {
-      reply = "Ready to complete your transaction? I will navigate you straight to the secure checkout review system.";
-      redirectUrl = "/checkout.html";
-    }
+    // 2. Engineer the Prompt to force JSON routing outputs
+    const prompt = `
+      You are the AI sales and support assistant for EcoDrive, an electric vehicle e-commerce platform.
+      A customer just sent this message: "${message}"
+      
+      Respond in strict JSON format with exactly two keys:
+      1. "reply": A warm, helpful, brief conversational response (1-2 sentences) answering their question or acknowledging their request.
+      2. "redirectUrl": A relative URL to help navigate them to the right place. Use these rules:
+         - "/index.html" -> if they want to browse cars, see the catalog, or see general inventory.
+         - "/login.html" -> if they want to log in, register, or see their account.
+         - "/checkout.html" -> if they want to buy, checkout, or view their cart.
+         - null -> if they are just saying hello or asking a general question that doesn't require navigation.
+      
+      Return ONLY the raw JSON object. Do not wrap it in markdown code blocks.
+    `;
 
-    // Return conversational text alongside an actionable redirect URL schema
+    // 3. Execute the AI Generation
+    const result = await model.generateContent(prompt);
+    let responseText = result.response.text().trim();
+    
+    // 4. Sanitize and Parse the AI output (stripping any accidental markdown fences)
+    responseText = responseText.replace(/```json/g, '').replace(/```/g, '');
+    const aiResponse = JSON.parse(responseText);
+
+    // 5. Send the dynamic AI response back to the client
     return res.status(200).json({
       status: "Success",
-      reply,
-      redirectUrl
+      reply: aiResponse.reply,
+      redirectUrl: aiResponse.redirectUrl
     });
 
   } catch (error) {
-    return res.status(500).json({ status: "Failure", message: error.message });
+    console.error('Chatbot AI Error:', error);
+    return res.status(500).json({ 
+      status: "Failure", 
+      message: "The AI assistant is currently offline. Please try again later." 
+    });
   }
 };
 
