@@ -1,6 +1,6 @@
 document.getElementById("loadSalesBtn").addEventListener("click", async function() {
     const token = localStorage.getItem("token");
-    const response = await fetch("api/admin/reports/sales", {
+    const response = await fetch("api/admin/sales-report", {
         headers: {
             "Authorization": `Bearer ${token}`
         }
