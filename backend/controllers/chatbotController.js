@@ -11,11 +11,9 @@ const handleChatbotMessage = async (req, res) => {
       return res.status(400).json({ status: "Failure", message: "Message content cannot be blank." });
     }
 
-    // 1. Initialize the Gemini AI Client
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-    // 2. Engineer the Prompt to force JSON routing outputs
     const prompt = `
       You are the AI sales and support assistant for EcoDrive, an electric vehicle e-commerce platform.
       A customer just sent this message: "${message}"
@@ -31,15 +29,12 @@ const handleChatbotMessage = async (req, res) => {
       Return ONLY the raw JSON object. Do not wrap it in markdown code blocks.
     `;
 
-    // 3. Execute the AI Generation
     const result = await model.generateContent(prompt);
     let responseText = result.response.text().trim();
     
-    // 4. Sanitize and Parse the AI output (stripping any accidental markdown fences)
     responseText = responseText.replace(/```json/g, '').replace(/```/g, '');
     const aiResponse = JSON.parse(responseText);
 
-    // 5. Send the dynamic AI response back to the client
     return res.status(200).json({
       status: "Success",
       reply: aiResponse.reply,
