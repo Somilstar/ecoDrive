@@ -12,10 +12,9 @@ const generateToken = (id) => {
 // @access  Public
 const registerUser = async (req, res) => {
   try {
-    // Destructuring fields that match your teammate's schema
     const { email, password, firstName, lastName, shippingAddress, billingAddress } = req.body;
 
-    // 1. Input Payload Validation
+    // Input Payload Validation
     if (!email || !password || !firstName || !lastName) {
       return res.status(400).json({ 
         status: 'Failure', 
@@ -23,20 +22,17 @@ const registerUser = async (req, res) => {
       });
     }
 
-    // 2. Data Normalization
+    //Data Normalization
     const normalizedEmail = email.toLowerCase().trim();
 
-    
     const userExists = await User.findOne({ email: normalizedEmail });
     if (userExists) {
       return res.status(400).json({ status: 'Failure', message: 'An account with this email already exists.' });
     }
 
-    
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    
     const user = await User.create({
       email: normalizedEmail,
       password: hashedPassword,
@@ -76,12 +72,11 @@ const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // 1. Validate Input Payload
+    // Validate Input Payload
     if (!email || !password) {
       return res.status(400).json({ status: 'Failure', message: 'Both email and password elements are required.' });
     }
 
-    // 2. Query Account with explicit Password inclusion (+password bypasses select: false)
     const normalizedEmail = email.toLowerCase().trim();
     const user = await User.findOne({ email: normalizedEmail }).select('+password');
     
@@ -89,13 +84,11 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ status: 'Failure', message: 'Invalid email or password credentials.' });
     }
 
-    // 3. Cryptographic Hash Assessment
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
       return res.status(401).json({ status: 'Failure', message: 'Invalid email or password credentials.' });
     }
 
-    // 4. Authentication Passed: Return Stateful Configuration Values
     return res.status(200).json({
       status: 'Success',
       id: user.id,
