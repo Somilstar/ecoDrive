@@ -10,5 +10,8 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         body: JSON.stringify({ email, password })
     });
     const data = await response.json();
+    if (response.ok && data.token) {
+        localStorage.setItem("token", data.token);
+    }
     document.getElementById("loginMessage").textContent = JSON.stringify(data, null, 2);
 });
