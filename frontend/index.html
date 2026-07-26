@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoDrive - Catalog</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="config.js"></script>
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">EcoDrive</a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Vehicles</a></li>
+            <li><a href="account.html">My Account</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-container" style="max-width: 800px;">
+        <h1>Vehicle Catalog</h1>
+        <button id="loadCatalogBtn" class="btn-gray">Load Vehicles</button>
+        
+        <!-- Added pre-wrap styling so the JSON formats nicely like the teammate intended -->
+        <div id="catalog" style="margin-top: 20px; text-align: left; background: #fff; padding: 20px; border: 1px solid #eaeaea; white-space: pre-wrap;"></div>
+    </div>
+</body>
+</html>

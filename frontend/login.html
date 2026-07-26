@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoDrive - Login</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="config.js"></script>
+    <script src="login.js" defer></script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">EcoDrive</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Vehicles</a></li>
+            <li><a href="index.html#compare">Compare</a></li>
+            <li><a href="account.html">My Account</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="login.html" class="active">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-container">
+        <h1>Welcome to EcoDrive</h1>
+        <button class="btn-gray" onclick="window.location.href='register.html'">Register</button>
+
+        <form id="loginForm" style="margin-top: 40px;">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Random@gmail.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="XXXXXXXXXXXX" required>
+            </div>
+
+            <button type="submit" class="btn-gray btn-block">Login</button>
+            <a href="register.html" class="btn-gray btn-block">Don't have an account? Register</a>
+            <a href="forgot-password.html" style="display: block; margin-top: 15px; color: #666; font-size: 14px;">Forgot password?</a>
+        </form>
+        <p id="loginMessage" class="alert"></p>
+    </div>
+</body>
+</html>
