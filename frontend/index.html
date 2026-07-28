@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoDrive - Catalog</title>
     <link rel="stylesheet" href="style.css">
     <script src="config.js"></script>
     <script src="index.js" defer></script>
+    <script src="chatbot.js" defer></script>
 </head>
 <body>
     <nav class="navbar">
@@ -22,8 +24,20 @@
         <h1>Vehicle Catalog</h1>
         <button id="loadCatalogBtn" class="btn-gray">Load Vehicles</button>
         
-        <!-- Added pre-wrap styling so the JSON formats nicely like the teammate intended -->
         <div id="catalog" style="margin-top: 20px; text-align: left; background: #fff; padding: 20px; border: 1px solid #eaeaea; white-space: pre-wrap;"></div>
+    </div>
+
+    <!-- Chatbot UI Widget -->
+    <button id="chatToggleBtn" class="chat-toggle-btn">Chat</button>
+    <div id="chatWindow" class="chat-window">
+        <div class="chat-header">EcoDrive Assistant</div>
+        <div id="chatBody" class="chat-body">
+            <div class="message bot">Hello! How can I help you navigate EcoDrive today?</div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="chatInput" placeholder="Type a message..." />
+            <button id="chatSendBtn">Send</button>
+        </div>
     </div>
 </body>
 </html>
