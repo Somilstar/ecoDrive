@@ -7,6 +7,5 @@ const { handleChatbotMessage } = require('../controllers/chatbotController');
 router.post('/register', registerUser);
 router.post('/login', loginUser);
 
-router.post('/chatbot/message', handleChatbotMessage);
 
 module.exports = router;
