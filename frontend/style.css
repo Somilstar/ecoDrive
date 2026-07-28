@@ -109,3 +109,55 @@ h1 {
     font-size: 14px;
     font-weight: 500;
 }
+
+/* Admin Dashboard */
+.dashboard-container {
+    max-width: 900px;
+    margin: 60px auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 40px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.admin-panels {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    text-align: left;
+}
+
+.admin-panel {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid #eaeaea;
+    padding: 20px 30px;
+}
+
+.admin-panel h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.admin-panel table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-panel th,
+.admin-panel td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.admin-panel p {
+    margin-bottom: 15px;
+}
