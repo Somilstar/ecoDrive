@@ -109,3 +109,173 @@ h1 {
     font-size: 14px;
     font-weight: 500;
 }
+
+/**/
+
+/* Cart and Checkout Page */
+
+.checkout-page {
+    width: 1485px;
+    margin: 95px auto 60px;
+}
+
+.checkout-page > h1 {
+    margin-bottom: 45px;
+    text-align: center;
+    font-size: 40px;
+}
+
+/* Places the cart and order summary beside each other */
+.checkout-layout {
+    display: grid;
+    grid-template-columns: 615px 615px;
+    gap: 255px;
+}
+
+/* Shared styling for both white boxes */
+.checkout-box {
+    min-height: 755px;
+    padding: 55px 95px 38px;
+    background-color: #ffffff;
+}
+
+.checkout-box h2 {
+    margin-bottom: 35px;
+    text-align: center;
+    font-size: 40px;
+}
+
+/* Vehicle information in the cart */
+.checkout-cart-item {
+    margin-bottom: 65px;
+}
+
+.checkout-cart-item h3 {
+    margin-bottom: 3px;
+    font-size: 28px;
+}
+
+.checkout-cart-item p {
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.3;
+}
+
+.remove-cart-button {
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #000000;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Shipping and payment sections */
+.checkout-section {
+    margin-bottom: 35px;
+}
+
+.checkout-section h3 {
+    margin-bottom: 12px;
+    font-size: 27px;
+}
+
+.checkout-field {
+    margin-bottom: 10px;
+}
+
+.checkout-field label {
+    display: block;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.checkout-field input,
+.checkout-field select {
+    width: 100%;
+    padding: 5px 2px;
+    border: none;
+    border-bottom: 1px solid #bdbdbd;
+    background: transparent;
+    font-size: 15px;
+    outline: none;
+}
+
+.checkout-field input:focus,
+.checkout-field select:focus {
+    border-bottom-color: #2ecc71;
+}
+
+/* Places expiry and CVV beside each other */
+.payment-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.payment-warning {
+    margin-bottom: 10px;
+    color: #666666;
+    font-size: 12px;
+}
+
+/* Order summary box */
+.summary-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+/* Green submit button */
+.submit-order-button {
+    display: block;
+    width: 330px;
+    height: 64px;
+    margin: 0 auto;
+    border: none;
+    background-color: #2ecc71;
+    color: #000000;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.submit-order-button:hover {
+    background-color: #28bd67;
+}
+
+.submit-order-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Success and error messages */
+.checkout-message {
+    min-height: 20px;
+    margin-bottom: 12px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.checkout-message.success {
+    color: #198754;
+}
+
+.checkout-message.error {
+    color: #dc3545;
+}
+
+.empty-cart-message {
+    margin-bottom: 45px;
+    text-align: center;
+    color: #666666;
+}
