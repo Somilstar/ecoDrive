@@ -161,13 +161,18 @@ h1 {
 }
 
 .remove-cart-button {
-    padding: 0;
+    margin-top: 10px;
+    padding: 7px 18px;
     border: none;
-    background: transparent;
-    color: #000000;
-    font-size: 20px;
+    background-color: #e0e0e0;
+    color: #333333;
+    font-size: 14px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.remove-cart-button:hover {
+    background-color: #d4d4d4;
 }
 
 /* Shipping and payment sections */

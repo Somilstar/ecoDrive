@@ -71,7 +71,7 @@ function displayCart() {
         const removeButton = document.createElement("button");
         removeButton.type = "button";
         removeButton.className = "remove-cart-button";
-        removeButton.textContent = "[Remove]";
+        removeButton.textContent = "Remove";
 
         removeButton.addEventListener("click", function() {
             removeVehicle(index);
