@@ -432,7 +432,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return `
                     <td>
                         <a
-                            href="vehicle-details.html?id=${vehicleId}"
+                            href="vehicle-detail.html?id=${vehicleId}"
                             class="comparison-details-link"
                         >
                             View Details

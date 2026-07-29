@@ -1,34 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoDrive - Catalog</title>
+    <title>EcoDrive - Vehicle Catalog</title>
     <link rel="stylesheet" href="style.css">
     <script src="config.js"></script>
     <script src="nav.js" defer></script>
     <script src="index.js" defer></script>
     <script src="chatbot.js" defer></script>
 </head>
+
 <body>
     <nav class="navbar">
         <a href="index.html" class="logo">EcoDrive</a>
         <ul class="nav-links">
             <li><a href="index.html" class="active">Vehicles</a></li>
+            <li><a href="compare.html">Compare</a></li>
             <li><a href="account.html">My Account</a></li>
             <li><a href="cart.html">Cart</a></li>
-            <li><a href="login.html">Login</a></li>
+            <li><a href="login.html" id="authLink">Login</a></li>
         </ul>
     </nav>
 
-    <div class="main-container" style="max-width: 800px;">
-        <h1>Vehicle Catalog</h1>
-        <button id="loadCatalogBtn" class="btn-gray">Load Vehicles</button>
-        
-        <div id="catalog" style="margin-top: 20px; text-align: left; background: #fff; padding: 20px; border: 1px solid #eaeaea; white-space: pre-wrap;"></div>
-    </div>
+    <main class="catalog-page">
 
-    <!-- Chatbot UI Widget -->
+        <section class="catalog-header">
+            <h1>All Vehicles</h1>
+            <p>Browse available electric vehicles</p>
+        </section>
+
+        <!-- Search, filtering, and sorting controls -->
+        <section
+            class="catalog-controls"
+            aria-label="Vehicle catalog controls"
+        >
+
+            <!-- Search by vehicle name, brand, or model -->
+            <div class="catalog-control catalog-search-control">
+                <label for="vehicleSearch" class="visually-hidden">
+                    Search vehicles
+                </label>
+
+                <input
+                    type="search"
+                    id="vehicleSearch"
+                    placeholder="Search..."
+                >
+            </div>
+
+            <!-- Brand filter -->
+            <div class="catalog-control">
+                <label for="brandFilter" class="visually-hidden">
+                    Filter by brand
+                </label>
+
+                <select id="brandFilter">
+                    <option value="">All Brands</option>
+                </select>
+            </div>
+
+            <!-- Price-range filter -->
+            <div class="catalog-control">
+                <label for="priceFilter" class="visually-hidden">
+                    Filter by price
+                </label>
+
+                <select id="priceFilter">
+                    <option value="">All Prices</option>
+                    <option value="under-40000">Under $40,000</option>
+                    <option value="40000-60000">$40,000 – $60,000</option>
+                    <option value="60000-80000">$60,000 – $80,000</option>
+                    <option value="over-80000">Over $80,000</option>
+                </select>
+            </div>
+
+            <!-- Sorting control -->
+            <div class="catalog-control">
+                <label for="sortFilter" class="visually-hidden">
+                    Sort vehicles
+                </label>
+
+                <select id="sortFilter">
+                    <option value="">Sort Vehicles</option>
+                    <option value="price-low-high">
+                        Price: Low to High
+                    </option>
+                    <option value="price-high-low">
+                        Price: High to Low
+                    </option>
+                    <option value="mileage-low-high">
+                        Mileage: Low to High
+                    </option>
+                    <option value="mileage-high-low">
+                        Mileage: High to Low
+                    </option>
+                </select>
+            </div>
+
+        </section>
+
+        <!-- Additional catalog actions -->
+        <section class="catalog-action-bar">
+
+            <!-- Shows only vehicles marked as Hot Deals -->
+            <label class="hot-deals-filter">
+                <input type="checkbox" id="hotDealsFilter">
+                Hot Deals Only
+            </label>
+
+            <div class="catalog-action-buttons">
+
+                <!-- Resets all search, filter, and sorting controls -->
+                <button
+                    type="button"
+                    id="clearFiltersBtn"
+                    class="catalog-secondary-button"
+                >
+                    Clear Filters
+                </button>
+
+                <!-- Opens the comparison page with selected vehicles -->
+                <button
+                    type="button"
+                    id="compareSelectedBtn"
+                    class="catalog-compare-button"
+                    disabled
+                >
+                    Compare Selected (0/3)
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- Catalog status information -->
+        <section class="catalog-feedback">
+            <p
+                id="catalogMessage"
+                class="catalog-message"
+                role="status"
+                aria-live="polite"
+            ></p>
+
+            <p id="catalogCount" class="catalog-count"></p>
+        </section>
+
+        <section
+            id="catalog"
+            class="vehicle-grid"
+            aria-label="Available vehicles"
+        >
+
+            <!-- Initial loading state -->
+            <div class="catalog-empty-state">
+                <p>Loading available vehicles...</p>
+            </div>
+
+        </section>
+
+    </main>
+    
+        <!-- Chatbot UI Widget -->
     <button id="chatToggleBtn" class="chat-toggle-btn">Chat</button>
     <div id="chatWindow" class="chat-window">
         <div class="chat-header">EcoDrive Assistant</div>
