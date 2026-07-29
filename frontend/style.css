@@ -110,752 +110,208 @@ h1 {
     font-weight: 500;
 }
 
-/* Cart and Checkout Page */
 
-.checkout-page {
-    width: calc(100% - 150px);
-    max-width: 1485px;
-    margin: 65px auto 40px;
-}
-
-.checkout-page > h1 {
-    margin-bottom: 35px;
-    text-align: center;
-    font-size: 36px;
-}
-
-/* Places the cart and order summary beside each other */
-.checkout-layout {
+/* vehicle details */
+.vehicle-content{
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 13%;
-}
-
-/* Shared styling for both white boxes */
-.checkout-box {
-    min-height: 640px;
-    padding: 45px 70px 32px;
-    background-color: #ffffff;
-}
-
-.checkout-box h2 {
-    margin-bottom: 30px;
-    text-align: center;
-    font-size: 36px;
-}
-
-/* Vehicle information in the cart */
-.checkout-cart-item {
-    margin-bottom: 65px;
-}
-
-.checkout-cart-item h3 {
-    margin-bottom: 3px;
-    font-size: 28px;
-}
-
-.checkout-cart-item p {
-    font-size: 22px;
-    font-weight: bold;
-    line-height: 1.3;
-}
-
-.remove-cart-button {
-    margin-top: 10px;
-    padding: 7px 18px;
-    border: none;
-    background-color: #e0e0e0;
-    color: #333333;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.remove-cart-button:hover {
-    background-color: #d4d4d4;
-}
-
-/* Shipping and payment sections */
-.checkout-section {
-    margin-bottom: 35px;
-}
-
-.checkout-section h3 {
-    margin-bottom: 12px;
-    font-size: 27px;
-}
-
-.checkout-field {
-    margin-bottom: 10px;
-}
-
-.checkout-field label {
-    display: block;
-    font-size: 17px;
-    font-weight: bold;
-}
-
-.checkout-field input,
-.checkout-field select {
-    width: 100%;
-    padding: 5px 2px;
-    border: none;
-    border-bottom: 1px solid #bdbdbd;
-    background: transparent;
-    font-size: 15px;
-    outline: none;
-}
-
-.checkout-field input:focus,
-.checkout-field select:focus {
-    border-bottom-color: #2ecc71;
-}
-
-/* Places expiry and CVV beside each other */
-.payment-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-}
-
-.payment-warning {
-    margin-bottom: 10px;
-    color: #666666;
-    font-size: 12px;
-}
-
-/* Order summary box */
-.summary-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.summary-line {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-    font-size: 26px;
-    font-weight: bold;
-}
-
-/* Green submit button */
-.submit-order-button {
-    display: block;
-    width: 280px;
-    height: 56px;
-    margin: 0 auto;
-    border: none;
-    background-color: #2ecc71;
-    color: #000000;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.submit-order-button:hover {
-    background-color: #28bd67;
-}
-
-.submit-order-button:disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
-}
-
-/* Success and error messages */
-.checkout-message {
-    min-height: 20px;
-    margin-bottom: 12px;
-    text-align: center;
-    font-size: 14px;
-}
-
-.checkout-message.success {
-    color: #198754;
-}
-
-.checkout-message.error {
-    color: #dc3545;
-}
-
-.empty-cart-message {
+    grid-template-columns: minmax(0, 1.4fr) minmax(200px, 0.8fr);
+    gap: 90px;
+    align-items: start;
     margin-bottom: 45px;
-    text-align: center;
-    color: #666666;
+    background-color: #FDF3F3;
 }
 
-/* Chatbot Widget */
-.chat-toggle-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #2ecc71;
-    color: white;
-    border: none;
-    padding: 15px 20px;
-    border-radius: 50px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    z-index: 1000;
-}
-
-.chat-window {
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    width: 320px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    display: none; /* Hidden by default */
+.vehicle-left{
+    display: flex;
+    min-height: 430px;
     flex-direction: column;
-    overflow: hidden;
-    z-index: 1000;
-}
-
-.chat-header {
-    background: #333;
-    color: white;
-    padding: 15px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.chat-body {
-    height: 300px;
-    padding: 15px;
-    overflow-y: auto;
-    background: #f9f9f9;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* Chat Bubbles */
-.message {
-    padding: 10px 14px;
-    border-radius: 18px;
-    font-size: 14px;
-    max-width: 80%;
-    line-height: 1.4;
-}
-
-.message.bot {
-    background: #e0e0e0;
-    align-self: flex-start;
-    border-bottom-left-radius: 2px;
-}
-
-.message.user {
-    background: #2ecc71;
-    color: white;
-    align-self: flex-end;
-    border-bottom-right-radius: 2px;
-}
-
-.chat-footer {
-    display: flex;
-    padding: 10px;
-    border-top: 1px solid #eaeaea;
-    background: white;
-}
-
-.chat-footer input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    outline: none;
-}
-
-.chat-footer button {
-    background: #333;
-    color: white;
-    border: none;
-    padding: 0 15px;
-    margin-left: 8px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* Loan Calculator Link on Checkout */
-
-.loan-calculator-link {
-    display: block;
-    width: 280px;
-    height: 48px;
-    margin: 0 auto 15px;
-    padding-top: 11px;
-    background-color: #e0e0e0;
-    color: #333333;
-    text-align: center;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.loan-calculator-link:hover {
-    background-color: #d4d4d4;
-}
-
-/* Loan Calculator Page */
-
-.loan-page {
-    width: calc(100% - 220px);
-    max-width: 1200px;
-    margin: 65px auto 40px;
-}
-
-.loan-page > h1 {
-    margin-bottom: 10px;
-    text-align: center;
-    font-size: 36px;
-}
-
-.loan-description {
-    margin-bottom: 35px;
-    color: #666666;
-    text-align: center;
-    font-size: 15px;
-}
-
-.loan-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-}
-
-.loan-box {
-    min-height: 520px;
-    padding: 45px 60px;
-    background-color: #ffffff;
-}
-
-.loan-box h2 {
-    margin-bottom: 35px;
-    text-align: center;
-    font-size: 30px;
-}
-
-.loan-field {
-    margin-bottom: 24px;
-}
-
-.loan-field label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.loan-field input,
-.loan-field select {
-    width: 100%;
-    padding: 10px 2px;
-    border: none;
-    border-bottom: 1px solid #bdbdbd;
-    background-color: transparent;
-    font-size: 16px;
-    outline: none;
-}
-
-.loan-field input:focus,
-.loan-field select:focus {
-    border-bottom-color: #2ecc71;
-}
-
-.calculate-loan-button {
-    display: block;
-    width: 250px;
-    height: 50px;
-    margin: 35px auto 0;
-    border: none;
-    background-color: #2ecc71;
-    color: #000000;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.calculate-loan-button:hover {
-    background-color: #28bd67;
-}
-
-.loan-result-line {
-    display: flex;
+    align-items: center;
     justify-content: space-between;
-    margin-bottom: 18px;
-    font-size: 18px;
-    font-weight: bold;
 }
 
-.loan-result-total {
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 1px solid #e0e0e0;
-    font-size: 21px;
-}
-
-.loan-disclaimer {
-    margin-top: 45px;
-    color: #666666;
-    text-align: center;
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-.back-to-cart-link {
+.vehicle-left img{
     display: block;
-    width: 220px;
-    margin: 35px auto 0;
-    color: #333333;
-    text-align: center;
-}
-
-.loan-message {
-    min-height: 20px;
-    margin-top: 18px;
-    text-align: center;
-    font-size: 14px;
-}
-
-.loan-message.success {
-    color: #198754;
-}
-
-.loan-message.error {
-    color: #dc3545;
-}
-
-/* Admin Dashboard */
-
-.dashboard-container {
-    max-width: 900px;
-    margin: 60px auto;
-    text-align: center;
-    padding: 0 20px;
-}
-
-.stats-row {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
-    margin-bottom: 40px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.admin-panels {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    text-align: left;
-}
-
-.admin-panel {
-    flex: 1;
-    background: #ffffff;
-    border: 1px solid #eaeaea;
-    padding: 20px 30px;
-}
-
-.admin-panel h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.admin-panel table {
     width: 100%;
-    border-collapse: collapse;
+    max-width: 560px;
+    height: 330px;
+    object-fit: contain;
+    background-color: transparent;
 }
 
-.admin-panel th,
-.admin-panel td {
-    text-align: left;
-    padding: 8px 10px;
-    border-bottom: 1px solid #eaeaea;
+.vehicle-right{
+    padding-top: 20px;
 }
 
-.admin-panel p {
-    margin-bottom: 15px;
-}
-
-/*COMPARE VEHICLES PAGE*/
-.compare-page {
-    width: 100%;
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 45px 40px 80px;
-}
-
-/*Page heading*/
-.compare-header {
-    margin-bottom: 35px;
-}
-
-.compare-header h1 {
-    margin-bottom: 10px;
-    font-size: 36px;
-    text-align: left;
-}
-
-.compare-header p {
-    color: #444;
-    font-size: 18px;
-}
-
-/*Vehicle-selection panel*/
-.compare-selection-panel {
-    margin-bottom: 35px;
-    padding: 28px;
-    background-color: #ffffff;
-    border: 1px solid #e1e1e1;
-}
-
-.compare-selection-panel h2 {
-    margin-bottom: 22px;
-    font-size: 24px;
-}
-
-.compare-selectors {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
+.vehicle-right h2{
     margin-bottom: 25px;
-}
-
-.compare-selector-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.compare-selector-group label {
-    margin-bottom: 8px;
-    font-size: 15px;
-    font-weight: 600;
-}
-
-.optional-text {
-    color: #777;
-    font-size: 13px;
-    font-weight: 400;
-}
-
-.vehicle-select {
-    width: 100%;
-    min-height: 45px;
-    padding: 10px 12px;
-    background-color: #ffffff;
-    border: 1px solid #cfcfcf;
-    border-radius: 2px;
-    color: #333;
-    font-size: 15px;
-    cursor: pointer;
-    outline: none;
-}
-
-.vehicle-select:hover {
-    border-color: #999;
-}
-
-.vehicle-select:focus {
-    border-color: #2ecc71;
-    box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.15);
-}
-
-.vehicle-select option:disabled {
-    color: #aaa;
-}
-
-/*Compare button */
-.compare-button {
-    min-width: 190px;
-    padding: 12px 24px;
-    background-color: #2ecc71;
-    border: none;
-    border-radius: 2px;
-    color: #111;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition:
-        background-color 0.2s ease,
-        opacity 0.2s ease;
-}
-
-.compare-button:hover {
-    background-color: #28b862;
-}
-
-.compare-button:focus {
-    outline: 2px solid #1f944e;
-    outline-offset: 2px;
-}
-
-.compare-button:disabled {
-    opacity: 0.55;
-    cursor: not-allowed;
-}
-
-/*Status and validation messages*/
-.compare-message {
-    min-height: 22px;
-    margin-top: 15px;
-    font-size: 14px;
+    color: #36414a;
+    font-size: 21px;
     font-weight: 500;
 }
 
-.compare-message.loading {
-    color: #555;
+.vehicle-row{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 15px;
+    margin-bottom: 18px;
 }
 
-.compare-message.error {
-    color: #e74c3c;
-}
-
-.compare-message.success {
-    color: #2e9f5b;
-}
-
-/*Comparison results*/
-.comparison-section {
-    width: 100%;
-}
-
-.compare-results {
-    width: 100%;
-}
-
-.compare-empty-state {
-    display: flex;
-    min-height: 230px;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-    background-color: #dedede;
-    color: #555;
-    text-align: center;
-}
-
-.compare-empty-state p {
-    max-width: 550px;
-    line-height: 1.6;
-}
-
-/*Comparison table*/
-.comparison-table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    background-color: #dedede;
-    border: 1px solid #d1d1d1;
-}
-
-.comparison-table {
-    width: 100%;
-    min-width: 900px;
-    border-collapse: collapse;
-    table-layout: fixed;
-}
-
-.comparison-table th,
-.comparison-table td {
-    padding: 18px 20px;
-    border-bottom: 1px solid #c6c6c6;
-    text-align: center;
-    vertical-align: middle;
-}
-
-.comparison-table thead th {
-    padding-top: 28px;
-    padding-bottom: 28px;
-    background-color: #d8d8d8;
-}
-
-.comparison-table tbody tr:last-child th,
-.comparison-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-/*First column containing labels such as Price, Mileage, and Year*/
-.comparison-row-label {
-    width: 190px;
-    color: #222;
-    font-weight: 600;
-    text-align: left !important;
-}
-
-.comparison-corner {
+.vehicle-row p{
+    min-height: 20px;
+    color: #545f67;
     font-size: 16px;
+    line-height: 1.4;
 }
 
-/*Vehicle headings*/
-.comparison-vehicle-heading {
-    min-width: 220px;
+.vehicle-row p:first-child{
+    font-weight: 500;
 }
 
-.comparison-vehicle-name {
-    display: block;
-    margin-bottom: 7px;
-    font-size: 20px;
-    font-weight: 700;
+.reviewContainer{
+    width: 78%;
+    margin: 0 auto;
 }
 
-.comparison-vehicle-model {
-    display: block;
-    color: #555;
-    font-size: 14px;
-    font-weight: 400;
+.reviewContainer h2{
+    width: 230px;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    background-color: #e6e8e7;
+    color: #475159;
+    font-size: 16px;
+    font-weight: 500;
 }
 
-.comparison-hot-deal {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 5px 10px;
-    background-color: #2ecc71;
-    color: #111;
-    font-size: 12px;
+#reviewList{
+    margin-bottom: 15px;
+}
+
+#reviewBtn{
+    padding: 10px 20px;
+}
+
+
+
+#addToCartBtn, #reviewBtn, #leaseBtn{
+    padding: 11px;
+    border: none;
+    background-color: #1fc49b;
+    color: #17362e;
+    font-size: 15px;
     font-weight: 600;
+    cursor: pointer;
+}
+ #reviewBtn:hover{
+    background-color: #17ae88;
 }
 
-/*View-details links*/
-.comparison-actions-row td {
-    padding-top: 24px;
-    padding-bottom: 28px;
+#addToCartBtn:hover{
+    background-color: #17ae88;
 }
 
-.comparison-details-link {
-    display: inline-block;
-    padding: 9px 16px;
-    background-color: #ffffff;
-    border: 1px solid #555;
-    color: #222;
-    text-decoration: none;
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease;
+#leaseBtn:hover{
+    background-color: #17ae88;
 }
 
-.comparison-details-link:hover {
-    background-color: #2ecc71;
-    border-color: #2ecc71;
-    color: #111;
+#vehicleSubtitle{
+    padding-bottom: 25px;
 }
 
-/*Tablet layout*/
-@media (max-width: 900px) {
-    .compare-page {
-        padding: 35px 25px 60px;
-    }
-
-    .compare-selectors {
-        grid-template-columns: 1fr;
-        gap: 18px;
-    }
-
-    .compare-header h1 {
-        font-size: 32px;
-    }
+/* Modal for submitting review */
+.review-Modal{
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.55);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
-/*Compare Vehicle End*/
+
+.reviewModal-content{
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.reviewModal-content h2{
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.review-subtitle{
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.close-modal { position: absolute; 
+    top: 10px; 
+    right: 15px; 
+    font-size:30px; 
+    font-weight: bold; 
+    color: #555; 
+    cursor: pointer; 
+}
+
+.close-modal:hover { color: black; }
+
+.starRating { display: flex; 
+    gap: 6px; 
+    margin-bottom: 8px; 
+}
+
+.star { font-size: 36px; 
+    color: #cccccc; 
+    cursor: pointer; 
+    transition:color 0.2s ease, transform 0.2s ease; 
+}
+
+.star:hover { transform: scale(1.1); }
+
+.star.selected { color: #f5b301; }
+
+.selected-Rating { margin-top: 0; margin-bottom: 20px; color: #555; }
+
+.reviewForm { margin-bottom: 20px; }
+
+.reviewForm label { display: block; margin-bottom: 8px;
+font-weight: 600; }
+
+.reviewForm textarea { width: 100%; min-height: 120px; padding:
+12px; border: 1px solid #cccccc; border-radius: 6px; font-family:
+inherit; font-size: 15px; resize: vertical; box-sizing: border-box; }
+
+.reviewForm textarea:focus { outline: none; border-color:
+#20c77a; box-shadow: 0 0 0 3px rgba(32, 199, 122, 0.15); }
+
+.review-form-group input[type = "number"]{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.review-form-group input[type = "number"]:focus{
+    outline: none;
+    border-color: #20c77a;
+    box-shadow: 0 0 0 3px rbga(32, 199, 122, 0.15);
+}
+
+#batteryLeaseResults {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+}
+
+#batteryLeaseResults p{
+    margin: 10px 0;
+}

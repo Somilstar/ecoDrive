@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="style.css">
+    <script src="config.js"></script>
+    <script src = "vehicle-detail.js"></script>
+    <script src = "review.js"></script>
+    <script src = "batteryLease.js"></script>
+    <title>EcoDrive-Vehicle-Detail</title>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">EcoDrive</a>
+        <ul class="nav-links">
+            <li><a href="index.html" class ="active">Vehicles</a></li>
+            <li><a href="index.html#compare">Compare</a></li>
+            <li><a href="account.html">My Account</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="login.html" class="active">Login</a></li>
+        </ul>
+    </nav>
+
+    <div class = "Vehicle-Details">
+     <div class = "vehicle-header">
+        <h1 id = "vehicleName">Vehicle Name</h1>
+        <p id ="vehicleSubtitle">Vehicle Description</p>
+     </div>
+     <div class = "vehicle-content">
+        <div class = "vehicle-left">
+        <img id = "vehicleImage" src = "./images/placeholder.jpg" alt = "vehicle image">
+        <button id ="addToCartBtn" type = "button"> Add to Cart</button>
+      </div>
+     <div class = "vehicle-right">
+        <h2>Vehicle Information</h2>
+        <div class = "vehicle-row">
+            <p>Brand:</p>
+            <p id ="vehicleBrand"></p>
+        </div>
+        <div class = "vehicle-row">
+            <p>Model:</p>
+            <p id ="vehicleModel"></p>
+        </div>
+        <div class = "vehicle-row">
+            <p>Year:</p>
+            <p id ="vehicleYear"></p>
+        </div>
+        <div class = "vehicle-row">
+            <p>Price:</p>
+            <p id ="vehiclePrice"></p>
+        </div>
+        <div class = "vehicle-row">
+            <p>Mileage:</p>
+            <p id ="vehicleMileage"></p>
+        </div>
+        <div class = "vehicle-row">
+            <p>Exterior Colourr:</p>
+            <p id ="vehicleExteriorColour"></p>
+        </div>
+        <div class = "vehicle-row">
+            <p>Interior Colour:</p>
+            <p id ="vehicleInteriorColour"></p>
+        </div>
+        <div class = "vehicle-row">
+            <p>Interior Fabric:</p>
+            <p id ="vehicleInteriorFabric"></p>
+        </div>
+        <div class = "vehicle-row">
+            <p>Shape:</p>
+            <p id ="vehicleShape"></p>
+        </div>
+        <div class = "vehicle-row">
+            <p>History Report:</p>
+            <p id ="vehicleHistoryReport"></p>
+        </div>
+         <div class = "vehicle-row">
+            <p>Quantity:</p>
+            <p id ="vehicleQuantity"></p>
+        </div>
+        <button id = "leaseBtn" type ="button"> Lease Battery</button>
+     </div>
+    </div>
+    <div class = "reviewContainer">
+        <h2>Reviews</h2>
+        <div id = "reviewList"></div>
+        <button id = "reviewBtn" type = "button"> Write Review</button>
+    </div>
+</div>
+<div id = "reviewModal" class = "review-Modal">
+    <div class = "reviewModal-content">
+        <span id = "closeReviewModal" class = "close-modal">&times;</span>
+        <h2>Write a Review</h2>
+        <p class = "review-subtitle">Tell us how your experience using this vehicle was</p>
+        <div class = "starRating">
+            <span class = "star" data-value = "1">&#9733;</span>
+            <span class = "star" data-value = "2">&#9733;</span>
+            <span class = "star" data-value = "3">&#9733;</span>
+            <span class = "star" data-value = "4">&#9733;</span>
+            <span class = "star" data-value = "5">&#9733;</span>
+        </div>
+        <p id = "selectedRating" class = "selected-Rating">Choose a Rating</p>
+        <div class = "reviewForm">
+            <label for ="reviewComment">Review</label>
+            <textarea id ="reviewComment" rows = 6 placeholder = "Tell us about this vehicle..."></textarea>
+        </div>
+        <div class ="reviewBtns">
+            <button id ="cancelReviewBtn" type = "button">Cancel</button>
+            <button id ="submitReviewBtn" type = "button">Submit</button>
+        </div>
+    </div>
+
+</div>
+<div id = "batteryLeaseModal" class = "review-Modal">
+     <div class="reviewModal-content">
+        <span id="closeBatteryLeaseModal"class="close-modal">&times;</span>
+        <h2>Battery Leasing</h2>
+        <p class="review-subtitle">Estimate your monthly battery lease cost by entering your expected monthly driving distance.</p>
+       <div class="review-form-group">
+         <label for="estimatedMonthlyKm">Estimated Monthly Kilometres </label>
+            <input
+                type="number"
+                id="estimatedMonthlyKm"
+                min="1"
+                max="20000"
+                placeholder="Example: 1500">
+        </div>
+
+        <hr>
+
+        <div id="batteryLeaseResults">
+            <p><strong>Vehicle Price:</strong><span id="leaseVehiclePrice">-</span></p>
+            <p><strong>Battery Value Removed:</strong><span id="leaseBatteryCost">-</span></p>
+            <p><strong>New Purchase Price:</strong><span id="leaseAdjustedPrice">-</span></p>
+            <p><strong>Monthly Battery Fee:</strong><span id="leaseMonthlyFee">-</span></p>
+        </div>
+        <div class="review-buttons">
+            <button id="cancelBatteryLeaseBtn" type="button"class="cancel-review-btn">Cancel</button>
+            <button id="calculateBatteryLeaseBtn" type="button" class="view-details-btn">Calculate</button>
+            <button id="acceptBatteryLeaseBtn" type="button" class="view-details-btn">Accept Lease</button>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
