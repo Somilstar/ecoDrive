@@ -315,3 +315,680 @@ inherit; font-size: 15px; resize: vertical; box-sizing: border-box; }
 #batteryLeaseResults p{
     margin: 10px 0;
 }
+
+/*COMPARE VEHICLES PAGE*/
+.compare-page {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 45px 40px 80px;
+}
+
+/*Page heading*/
+.compare-header {
+    margin-bottom: 35px;
+}
+
+.compare-header h1 {
+    margin-bottom: 10px;
+    font-size: 36px;
+    text-align: left;
+}
+
+.compare-header p {
+    color: #444;
+    font-size: 18px;
+}
+
+/*Vehicle-selection panel*/
+.compare-selection-panel {
+    margin-bottom: 35px;
+    padding: 28px;
+    background-color: #ffffff;
+    border: 1px solid #e1e1e1;
+}
+
+.compare-selection-panel h2 {
+    margin-bottom: 22px;
+    font-size: 24px;
+}
+
+.compare-selectors {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-bottom: 25px;
+}
+
+.compare-selector-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.compare-selector-group label {
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.optional-text {
+    color: #777;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.vehicle-select {
+    width: 100%;
+    min-height: 45px;
+    padding: 10px 12px;
+    background-color: #ffffff;
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    color: #333;
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+}
+
+.vehicle-select:hover {
+    border-color: #999;
+}
+
+.vehicle-select:focus {
+    border-color: #2ecc71;
+    box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.15);
+}
+
+.vehicle-select option:disabled {
+    color: #aaa;
+}
+
+/*Compare button */
+.compare-button {
+    min-width: 190px;
+    padding: 12px 24px;
+    background-color: #2ecc71;
+    border: none;
+    border-radius: 2px;
+    color: #111;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.compare-button:hover {
+    background-color: #28b862;
+}
+
+.compare-button:focus {
+    outline: 2px solid #1f944e;
+    outline-offset: 2px;
+}
+
+.compare-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/*Status and validation messages*/
+.compare-message {
+    min-height: 22px;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.compare-message.loading {
+    color: #555;
+}
+
+.compare-message.error {
+    color: #e74c3c;
+}
+
+.compare-message.success {
+    color: #2e9f5b;
+}
+
+/*Comparison results*/
+.comparison-section {
+    width: 100%;
+}
+
+.compare-results {
+    width: 100%;
+}
+
+.compare-empty-state {
+    display: flex;
+    min-height: 230px;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: #dedede;
+    color: #555;
+    text-align: center;
+}
+
+.compare-empty-state p {
+    max-width: 550px;
+    line-height: 1.6;
+}
+
+/*Comparison table*/
+.comparison-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    background-color: #dedede;
+    border: 1px solid #d1d1d1;
+}
+
+.comparison-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 18px 20px;
+    border-bottom: 1px solid #c6c6c6;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.comparison-table thead th {
+    padding-top: 28px;
+    padding-bottom: 28px;
+    background-color: #d8d8d8;
+}
+
+.comparison-table tbody tr:last-child th,
+.comparison-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/*First column containing labels such as Price, Mileage, and Year*/
+.comparison-row-label {
+    width: 190px;
+    color: #222;
+    font-weight: 600;
+    text-align: left !important;
+}
+
+.comparison-corner {
+    font-size: 16px;
+}
+
+/*Vehicle headings*/
+.comparison-vehicle-heading {
+    min-width: 220px;
+}
+
+.comparison-vehicle-name {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.comparison-vehicle-model {
+    display: block;
+    color: #555;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.comparison-hot-deal {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #2ecc71;
+    color: #111;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/*View-details links*/
+.comparison-actions-row td {
+    padding-top: 24px;
+    padding-bottom: 28px;
+}
+
+.comparison-details-link {
+    display: inline-block;
+    padding: 9px 16px;
+    background-color: #ffffff;
+    border: 1px solid #555;
+    color: #222;
+    text-decoration: none;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.comparison-details-link:hover {
+    background-color: #2ecc71;
+    border-color: #2ecc71;
+    color: #111;
+}
+/*Compare Vehicle End*/
+
+/*VEHICLE CATALOG/HOME PAGE*/
+.catalog-page {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 45px 40px 80px;
+}
+
+/*Catalog heading*/
+.catalog-header {
+    margin-bottom: 5px;
+}
+
+.catalog-header h1 {
+    margin-bottom: 2px;
+    font-size: 36px;
+    text-align: left;
+}
+
+.catalog-header p {
+    color: #444;
+    font-size: 16px;
+}
+
+/*Search, filter, and sorting controls*/
+
+.catalog-controls {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr 1fr 1.25fr;
+    width: 100%;
+    margin-top: 6px;
+    background-color: #dddddd;
+}
+
+.catalog-control {
+    min-width: 0;
+}
+
+.catalog-control input,
+.catalog-control select {
+    width: 100%;
+    height: 45px;
+    padding: 10px 18px;
+    background-color: transparent;
+    border: none;
+    border-right: 1px solid #c7c7c7;
+    color: #222;
+    font-size: 16px;
+    outline: none;
+}
+
+.catalog-control:last-child select {
+    border-right: none;
+}
+
+.catalog-control input::placeholder {
+    color: #222;
+    opacity: 1;
+}
+
+.catalog-control input:focus,
+.catalog-control select:focus {
+    background-color: #ffffff;
+    box-shadow: inset 0 -3px 0 #2ecc71;
+}
+
+.catalog-control select {
+    cursor: pointer;
+}
+
+.catalog-search-control input::-webkit-search-cancel-button {
+    cursor: pointer;
+}
+
+
+/*Additional catalog actions*/
+.catalog-action-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    margin-top: 18px;
+    margin-bottom: 10px;
+}
+
+.hot-deals-filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: #333;
+    font-size: 15px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.hot-deals-filter input {
+    width: 17px;
+    height: 17px;
+    accent-color: #2ecc71;
+    cursor: pointer;
+}
+
+.catalog-action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/*Button used to reset catalog filters*/
+.catalog-secondary-button {
+    padding: 10px 18px;
+    background-color: #e0e0e0;
+    border: 1px solid #d0d0d0;
+    border-radius: 2px;
+    color: #222;
+    font-size: 14px;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.catalog-secondary-button:hover {
+    background-color: #d4d4d4;
+    border-color: #bbbbbb;
+}
+
+.catalog-secondary-button:focus {
+    outline: 2px solid #777;
+    outline-offset: 2px;
+}
+
+.catalog-secondary-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/*Main comparison action*/
+.catalog-compare-button {
+    min-width: 190px;
+    padding: 10px 18px;
+    background-color: #2ecc71;
+    border: 1px solid #2ecc71;
+    border-radius: 2px;
+    color: #111;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.catalog-compare-button:hover:not(:disabled) {
+    background-color: #28b862;
+    border-color: #28b862;
+}
+
+.catalog-compare-button:focus {
+    outline: 2px solid #1f944e;
+    outline-offset: 2px;
+}
+
+.catalog-compare-button:disabled {
+    background-color: #d8d8d8;
+    border-color: #d8d8d8;
+    color: #777;
+    cursor: not-allowed;
+}
+
+
+/*Catalog feedback and vehicle count*/
+.catalog-feedback {
+    display: flex;
+    min-height: 30px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 14px;
+}
+
+.catalog-message {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.catalog-message.loading {
+    color: #555;
+}
+
+.catalog-message.error {
+    color: #e74c3c;
+}
+
+.catalog-message.success {
+    color: #2e9f5b;
+}
+
+.catalog-count {
+    margin-left: auto;
+    color: #666;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/*Vehicle card grid*/
+.vehicle-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 42px 70px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/*Used for loading, empty, and error states*/
+.catalog-empty-state {
+    grid-column: 1 / -1;
+    display: flex;
+    min-height: 280px;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: #ffffff;
+    border: 1px solid #e3e3e3;
+    color: #555;
+    text-align: center;
+}
+
+.catalog-empty-state p {
+    max-width: 550px;
+    line-height: 1.6;
+}
+
+/*Individual vehicle card*/
+.vehicle-card {
+    position: relative;
+    display: flex;
+    min-height: 440px;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #ffffff;
+    border: 2px solid transparent;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.vehicle-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.09);
+}
+
+/*Highlights a vehicle selected for comparison*/
+.vehicle-card.selected-for-compare {
+    border-color: #2ecc71;
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.2);
+}
+
+
+/*Card image and Hot Deal badge*/
+.vehicle-card-top {
+    position: relative;
+    height: 210px;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f3f3f3;
+}
+
+.vehicle-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.vehicle-card:hover .vehicle-image {
+    transform: scale(1.03);
+}
+
+.hot-deal-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1;
+    padding: 6px 11px;
+    background-color: #2ecc71;
+    color: #111;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.hot-deal-badge-placeholder {
+    display: block;
+    min-height: 27px;
+}
+
+/*Vehicle information*/
+.vehicle-card-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 22px 24px 16px;
+}
+
+.vehicle-card-name {
+    margin-bottom: 5px;
+    color: #222;
+    font-size: 22px;
+    line-height: 1.25;
+}
+
+.vehicle-card-model {
+    min-height: 22px;
+    margin-bottom: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+.vehicle-card-details {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+}
+
+.vehicle-card-details div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ededed;
+}
+
+.vehicle-card-details dt {
+    color: #555;
+    font-size: 14px;
+}
+
+.vehicle-card-details dd {
+    margin: 0;
+    color: #222;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: right;
+}
+
+/*Vehicle inventory status*/
+.vehicle-stock {
+    margin-top: auto;
+    padding-top: 18px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.vehicle-stock.in-stock {
+    color: #238b4a;
+}
+
+.vehicle-stock.out-of-stock {
+    color: #d64545;
+}
+
+/*Vehicle-card action area*/
+.vehicle-card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 24px 22px;
+    border-top: 1px solid #ededed;
+}
+
+/*Link to the vehicle-details page*/
+.vehicle-details-button {
+    display: inline-block;
+    padding: 9px 14px;
+    background-color: #e0e0e0;
+    border: 1px solid #d4d4d4;
+    color: #222;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.vehicle-details-button:hover {
+    background-color: #2ecc71;
+    border-color: #2ecc71;
+}
+
+/*Add-to-comparison checkbox and label*/
+.vehicle-compare-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #333;
+    font-size: 13px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.compare-checkbox {
+    width: 16px;
+    height: 16px;
+    accent-color: #2ecc71;
+    cursor: pointer;
+}
+/*Vehicle Catalog/Home end*/
