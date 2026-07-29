@@ -1,3 +1,4 @@
+const CART_STORAGE_KEY = "ecoDriveCart";
 const VEHICLE_IMAGES = {
     "EV-TSLA-M3-001": "img/Tesla Model 3.jpg",
     "EV-POR-TAY-002": "img/Porsche Taycan 4S.jpg",
@@ -5,6 +6,61 @@ const VEHICLE_IMAGES = {
     "EV-HYU-IQ5-004": "img/Hyundai Ioniq 5 SEL.jpg",
     "EV-CHV-BLT-005": "img/Chevrolet Bolt EV.jpg",
   };
+
+  let currentVehicle = null;
+  function loadCart() {
+    const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+
+    if (!savedCart) {
+        return [];
+    }
+
+    try {
+        return JSON.parse(savedCart);
+    } catch (error) {
+        return [];
+    }
+}
+function saveCart(cart) {
+    localStorage.setItem(
+        CART_STORAGE_KEY,
+        JSON.stringify(cart)
+    );
+}
+
+function updateCartCount(){
+    const cart = loadCart();
+    const cartCount = document.getElementById("cartCount");
+    if (cartCount){
+        cartCount.textContent = cart.length;
+    }
+}
+
+function addCurrentVehicleToCart(){
+    if (!currentVehicle){
+        alert("The vehicle has not loaded.");
+        return;
+    }
+    const cart = loadCart();
+    const alreadyInCart = cart.some(function(cartVehicle){
+        return cartVehicle.vehicleId == currentVehicle.vid;
+    });
+    if (alreadyInCart){
+        alert("This vehicle is already in your cart.");
+        return;
+    }
+    const cartVehicle = {
+        vehicleId: currentVehicle.vid,
+        name: currentVehicle.name,
+        price: Number(currentVehicle.price),
+        selectedCustomizationOptions: []
+    };
+    cart.push(cartVehicle);
+    saveCart(cart);
+    updateCartCount();
+    alert("Vehicle has been added to cart.");
+}
+
 async function loadVehicle() {
 
         const params = new URLSearchParams(window.location.search);
@@ -23,7 +79,7 @@ async function loadVehicle() {
 
             const data = await response.json();
             const vehicle = data.vehicle;
-
+            currentVehicle = vehicle;
             document.getElementById("vehicleName").textContent = vehicle.name;
             document.getElementById("vehicleSubtitle").textContent = vehicle.description;
 
@@ -52,4 +108,10 @@ async function loadVehicle() {
 
     }
 
-    document.addEventListener("DOMContentLoaded", loadVehicle);
+    document.addEventListener("DOMContentLoaded", function(){
+        updateCartCount();
+        loadVehicle();
+        
+        const addToCartButton = document.getElementById("addToCartBtn");
+        addToCartButton.addEventListener("click", addCurrentVehicleToCart);
+    });

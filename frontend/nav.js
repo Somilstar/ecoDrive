@@ -1,4 +1,35 @@
+
+
+function updateCartCount(){
+    const cartCountElement = document.getElementById("cartCount");
+    if(!cartCountElement){
+        return;
+    }
+    const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+
+    if (!savedCart){
+        cartCountElement.textContent = "0";
+        return;
+    }
+
+    try {
+        const cart = JSON.parse(savedCart);
+       const count = cart.length;
+       cartCountElement.textContent = count;
+       if (count > 0){
+         cartCountElement.style.display = "inline-flex";
+       }
+       else{
+        cartCountElement.style.display = "none";
+       }
+    } catch (error){
+        console.error("Could not load cart count:", error);
+        cartCountElement.textContent = "0";
+    }
+}
 document.addEventListener("DOMContentLoaded", () => {
+    updateCartCount();
+
     const userString = localStorage.getItem("user");
     if (!userString) {
         return;

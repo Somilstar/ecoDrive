@@ -1044,3 +1044,25 @@ inherit; font-size: 15px; resize: vertical; box-sizing: border-box; }
     color: #777777;
 }
 /* Review CSS done */
+
+.cartLink{
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.cart-badge{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    background: #17ae88;
+    color: #ffffff;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    transform: translateY(1px);
+}

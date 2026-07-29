@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="style.css">
-    <script src="config.js"></script>
-    <script src = "vehicle-detail.js"></script>
-    <script src = "review.js"></script>
-    <script src = "batteryLease.js"></script>
+    <script src="config.js"defer></script>
+    <script src = "vehicle-detail.js"defer></script>
+    <script src = "review.js"defer></script>
+    <script src = "batteryLease.js"defer></script>
+    <script src = "nav.js" defer></script>
     <title>EcoDrive-Vehicle-Detail</title>
 </head>
 <body>
@@ -17,7 +18,7 @@
             <li><a href="index.html" class ="active">Vehicles</a></li>
             <li><a href="index.html#compare">Compare</a></li>
             <li><a href="account.html">My Account</a></li>
-            <li><a href="cart.html">Cart</a></li>
+            <li><a href="cart.html" class = "cartLink">Cart<span id = "cartCount" class = "cart-badge">0</span></a></li>
             <li><a href="login.html" class="active">Login</a></li>
         </ul>
     </nav>
