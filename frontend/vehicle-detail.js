@@ -1,4 +1,11 @@
-    async function loadVehicle() {
+const VEHICLE_IMAGES = {
+    "EV-TSLA-M3-001": "img/Tesla Model 3.jpg",
+    "EV-POR-TAY-002": "img/Porsche Taycan 4S.jpg",
+    "EV-FRD-F150-003": "img/Ford F-150 Lightning Lariat.jpg",
+    "EV-HYU-IQ5-004": "img/Hyundai Ioniq 5 SEL.jpg",
+    "EV-CHV-BLT-005": "img/Chevrolet Bolt EV.jpg",
+  };
+async function loadVehicle() {
 
         const params = new URLSearchParams(window.location.search);
         const vehicleId = params.get("id");
@@ -35,7 +42,9 @@
             //document.getElementById("vehicleDescription").textContent = vehicle.description;
             document.getElementById("vehicleQuantity").textContent = vehicle.quantity;
 
-            document.getElementById("vehicleImage").src = `images/${vehicle.vid}.jpg`;
+            const vehicleImage = document.getElementById("vehicleImage");
+            vehicleImage.src = VEHICLE_IMAGES[vehicle.vid] || "img/placeholder.jpg";
+            vehicleImage.alt = vehicle.name;
 
         } catch (error) {
             console.error("Could not load vehicle.", error);
