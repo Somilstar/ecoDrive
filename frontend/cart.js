@@ -94,6 +94,9 @@ function removeVehicle(index) {
 
     saveCart();
     displayCart();
+    if (typeof updateCartCount === "function"){
+        updateCartCount();
+    }
 }
 
 // Calculate and display the total.
