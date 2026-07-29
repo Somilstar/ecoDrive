@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoDrive - Compare Vehicles</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="config.js"></script>
+    <script src="compare.js" defer></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">EcoDrive</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Vehicles</a></li>
+            <li><a href="compare.html" class="active">Compare</a></li>
+            <li><a href="account.html">My Account</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="login.html" id="authLink">Login</a></li>
+        </ul>
+    </nav>
+
+ 
+    <main class="compare-page">
+        <section class="compare-header">
+            <h1>Compare Vehicles</h1>
+            <p>Compare up to 3 vehicles side-by-side</p>
+        </section>
+
+        <section class="compare-selection-panel">
+            <h2>Select Vehicles</h2>
+
+            <div class="compare-selectors">
+                <div class="compare-selector-group">
+                    <label for="vehicleSelect1">Vehicle 1</label>
+                    <select id="vehicleSelect1" class="vehicle-select">
+                        <option value="">Select first vehicle</option>
+                    </select>
+                </div>
+
+                <div class="compare-selector-group">
+                    <label for="vehicleSelect2">Vehicle 2</label>
+                    <select id="vehicleSelect2" class="vehicle-select">
+                        <option value="">Select second vehicle</option>
+                    </select>
+                </div>
+
+                <div class="compare-selector-group">
+                    <label for="vehicleSelect3">Vehicle 3<span class="optional-text">(Optional)</span></label>
+                    <select id="vehicleSelect3" class="vehicle-select">
+                        <option value="">Select third vehicle</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="button" id="compareBtn" class="compare-button">Compare Vehicles</button>
+
+            <p id="compareMessage" class="compare-message" role="status" aria-live="polite"></p>
+        </section>
+
+        <section id="comparisonSection" class="comparison-section" aria-labelledby="comparisonHeading">
+            <h2 id="comparisonHeading" class="visually-hidden">Vehicle Comparison Results</h2>
+
+            <div id="compareResults" class="compare-results">
+
+                <div class="compare-empty-state">
+                    <p>Select at least two different vehicles to view their information side-by-side.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
