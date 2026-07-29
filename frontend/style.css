@@ -109,3 +109,209 @@ h1 {
     font-size: 14px;
     font-weight: 500;
 }
+
+
+/* vehicle details */
+.vehicle-content{
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(200px, 0.8fr);
+    gap: 90px;
+    align-items: start;
+    margin-bottom: 45px;
+    background-color: #FDF3F3;
+}
+
+.vehicle-left{
+    display: flex;
+    min-height: 430px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.vehicle-left img{
+    display: block;
+    width: 100%;
+    max-width: 560px;
+    height: 330px;
+    object-fit: contain;
+    background-color: transparent;
+}
+
+.vehicle-right{
+    padding-top: 20px;
+}
+
+.vehicle-right h2{
+    margin-bottom: 25px;
+    color: #36414a;
+    font-size: 21px;
+    font-weight: 500;
+}
+
+.vehicle-row{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.vehicle-row p{
+    min-height: 20px;
+    color: #545f67;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.vehicle-row p:first-child{
+    font-weight: 500;
+}
+
+.reviewContainer{
+    width: 78%;
+    margin: 0 auto;
+}
+
+.reviewContainer h2{
+    width: 230px;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    background-color: #e6e8e7;
+    color: #475159;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+#reviewList{
+    margin-bottom: 15px;
+}
+
+#reviewBtn{
+    padding: 10px 20px;
+}
+
+
+
+#addToCartBtn, #reviewBtn, #leaseBtn{
+    padding: 11px;
+    border: none;
+    background-color: #1fc49b;
+    color: #17362e;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+ #reviewBtn:hover{
+    background-color: #17ae88;
+}
+
+#addToCartBtn:hover{
+    background-color: #17ae88;
+}
+
+#leaseBtn:hover{
+    background-color: #17ae88;
+}
+
+#vehicleSubtitle{
+    padding-bottom: 25px;
+}
+
+/* Modal for submitting review */
+.review-Modal{
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.55);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.reviewModal-content{
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.reviewModal-content h2{
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.review-subtitle{
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.close-modal { position: absolute; 
+    top: 10px; 
+    right: 15px; 
+    font-size:30px; 
+    font-weight: bold; 
+    color: #555; 
+    cursor: pointer; 
+}
+
+.close-modal:hover { color: black; }
+
+.starRating { display: flex; 
+    gap: 6px; 
+    margin-bottom: 8px; 
+}
+
+.star { font-size: 36px; 
+    color: #cccccc; 
+    cursor: pointer; 
+    transition:color 0.2s ease, transform 0.2s ease; 
+}
+
+.star:hover { transform: scale(1.1); }
+
+.star.selected { color: #f5b301; }
+
+.selected-Rating { margin-top: 0; margin-bottom: 20px; color: #555; }
+
+.reviewForm { margin-bottom: 20px; }
+
+.reviewForm label { display: block; margin-bottom: 8px;
+font-weight: 600; }
+
+.reviewForm textarea { width: 100%; min-height: 120px; padding:
+12px; border: 1px solid #cccccc; border-radius: 6px; font-family:
+inherit; font-size: 15px; resize: vertical; box-sizing: border-box; }
+
+.reviewForm textarea:focus { outline: none; border-color:
+#20c77a; box-shadow: 0 0 0 3px rgba(32, 199, 122, 0.15); }
+
+.review-form-group input[type = "number"]{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.review-form-group input[type = "number"]:focus{
+    outline: none;
+    border-color: #20c77a;
+    box-shadow: 0 0 0 3px rbga(32, 199, 122, 0.15);
+}
+
+#batteryLeaseResults {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+}
+
+#batteryLeaseResults p{
+    margin: 10px 0;
+}
