@@ -173,13 +173,13 @@ h1 {
 }
 
 .reviewContainer h2{
-    width: 230px;
-    margin-bottom: 15px;
-    padding: 10px 20px;
-    background-color: #e6e8e7;
-    color: #475159;
-    font-size: 16px;
-    font-weight: 500;
+    margin-bottom: 8px;
+    border-bottom: 3px solid #2ecc71;
+    padding-bottom: 6px;
+    color: #222;
+    font-size: 28px;
+    font-weight: 700;
+    display: inline-block;
 }
 
 #reviewList{
@@ -992,3 +992,55 @@ inherit; font-size: 15px; resize: vertical; box-sizing: border-box; }
     cursor: pointer;
 }
 /*Vehicle Catalog/Home end*/
+
+/* Reviews CSS */
+#reviewList{
+    margin: 18px 0;
+}
+
+.reviewSummary{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 18px;
+    background-color: #eeeeee;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.review-card{
+    margin-bottom: 14px;
+    padding: 18px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+}
+
+.review-card-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.review-card-header h3{
+    margin: 0;
+    font-size: 17px;
+}
+
+.review-rating{
+    color: #f5b301;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.review-comment{
+    margin: 8px 0 12px;
+    line-height: 1.5;
+}
+
+.review-date{
+    color: #777777;
+}
+/* Review CSS done */
