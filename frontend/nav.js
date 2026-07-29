@@ -1,5 +1,25 @@
 
+  function configureAuthenticationLink() {
+    const token = localStorage.getItem("token");
 
+    if (!token) {
+      authLink.textContent = "Login";
+      authLink.href = "login.html";
+      return;
+    }
+
+    authLink.textContent = "Logout";
+    authLink.href = "#";
+
+    authLink.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+
+      window.location.href = "login.html";
+    });
+  }
 function updateCartCount(){
     const cartCountElement = document.getElementById("cartCount");
     if(!cartCountElement){
@@ -29,7 +49,7 @@ function updateCartCount(){
 }
 document.addEventListener("DOMContentLoaded", () => {
     updateCartCount();
-
+    configureAuthenticationLink()
     const userString = localStorage.getItem("user");
     if (!userString) {
         return;
