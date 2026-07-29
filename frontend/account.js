@@ -9,12 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const user = JSON.parse(userString);
 
-    // Security redirect: If an admin accidentally navigates here, send them to their dashboard
-    if (user.role === 'admin') {
-        window.location.href = "admin.html";
-        return;
-    }
-
     document.getElementById("welcomeText").textContent = `Welcome back, ${user.firstName}!`;
     document.getElementById("profileDetails").innerHTML = `
         <strong>Email:</strong> ${user.email} <br><br>

@@ -45,6 +45,9 @@ app.use('/api/battery-lease', batteryLeaseRouter);
 const adminRouter = require('./routes/adminRouter');
 app.use('/api/admin', adminRouter);
 
+const chatbotRoutes = require('./routes/chatbotRoutes');
+app.use('/api/chatbot', chatbotRoutes);
+
 // Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

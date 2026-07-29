@@ -1,5 +1,7 @@
 const Order = require('../models/Order');
 const VisitEvent = require('../models/VisitEvent');
+const User = require('../models/User');
+const Review = require('../models/Review');
 
 const getSalesReport = async (req, res) => {
   try {
@@ -53,12 +55,14 @@ const getSalesReport = async (req, res) => {
 
     const totalVehiclesSold = salesByBrand.reduce((total, brand) => total + brand.vehiclesSold, 0);
     const totalSalesRevenue = salesByBrand.reduce((total, brand) => total + brand.salesRevenue, 0);
+    const totalActiveAccounts = await User.countDocuments();
 
     return res.status(200).json({
         status: 'Success',
         month: currentDate.toLocaleString('en-CA', { month: 'long', year: 'numeric' }),
         totalVehiclesSold,
         totalSalesRevenue,
+        totalActiveAccounts,
         salesByBrand
     });
   } catch (error) {
@@ -72,7 +76,7 @@ const getVisitReport = async (req, res) => {
         const VisitResults = await VisitEvent.aggregate([
             {
                 $group: {
-                    _id: '$eventType',
+                    _id: '$eventtype',
                     totalVisits: { $sum: 1 }
                 }
             },
@@ -97,11 +101,13 @@ VisitResults.forEach((result) => {
 });
 
 const totalEvents = trafficMetrics.VIEW + trafficMetrics.CART + trafficMetrics.PURCHASE;
+const totalReviewsSubmitted = await Review.countDocuments();
 
 return res.status(200).json({
     status: 'Success',
     totalEvents,
-    trafficMetrics
+    trafficMetrics,
+    totalReviewsSubmitted
 });
     } catch (error) {
         console.error('Visit Report Error Logged:', error);
