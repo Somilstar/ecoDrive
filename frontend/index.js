@@ -1,3 +1,4 @@
+const CART_STORAGE_KEY = "ecoDriveCart";
 document.addEventListener("DOMContentLoaded", () => {
   const VEHICLE_DETAILS_PAGE = "vehicle-detail.html";
   const MAX_COMPARE_VEHICLES = 3;

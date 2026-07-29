@@ -1,3 +1,4 @@
+const CART_STORAGE_KEY = "ecoDriveCart";
 document.addEventListener("DOMContentLoaded", () => {
   const vehicleSelects = [
     document.getElementById("vehicleSelect1"),
