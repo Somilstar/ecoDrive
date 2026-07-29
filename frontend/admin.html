@@ -3,9 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>EcoDrive - Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="config.js"></script>
+    <script src="admin.js" defer></script>
 </head>
 <body>
-    <h1>admin dashbord</h1>
+    <nav class="navbar">
+        <a href="index.html" class="logo">EcoDrive</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Vehicles</a></li>
+            <li><a href="compare.html">Compare</a></li>
+            <li><a href="account.html">My Account</a></li>
+            <li><a href="admin.html" class="active">Admin</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="#" id="logoutBtn">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="dashboard-container">
+        <h1>Admin Dashboard</h1>
+
+        <div class="stats-row">
+            <p>Total Sales: $<span id="totalSales">XXX,XXX</span></p>
+            <p>Vehicles Sold: <span id="vehiclesSold">XX</span></p>
+            <p>Active Accounts: XX</p>
+        </div>
+
+        <div class="admin-panels">
+            <div class="admin-panel">
+                <h2>Sales Report</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Brand</th>
+                            <th>Vehicles Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody id="salesReportBody">
+                        <tr>
+                            <td>Brand #1</td>
+                            <td>XXX</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="admin-panel">
+                <h2>Application Usage</h2>
+                <p>Orders Placed: <span id="ordersPlaced">XXX</span></p>
+                <p>Reviews Submitted: XXX</p>
+                <p>Vehicles Viewed: <span id="vehiclesViewed">XXX</span></p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

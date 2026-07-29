@@ -72,7 +72,7 @@ const getVisitReport = async (req, res) => {
         const VisitResults = await VisitEvent.aggregate([
             {
                 $group: {
-                    _id: '$eventType',
+                    _id: '$eventtype',
                     totalVisits: { $sum: 1 }
                 }
             },

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Item = require('../models/Item');
 const Order = require('../models/Order');
+const { recordVisitEvent } = require('../middleware/trackerMiddleware');
 
 // counter for the mock payment gateway, lives in app memory so it resets when the server restarts
 let paymentAttempts = 0;
@@ -129,13 +130,15 @@ const processCheckout = async (req, res) => {
       status: 'PROCESSED'
     });
 
-    // payment went through,so remove from catalog if quantity > 0 
+    // payment went through,so remove from catalog if quantity > 0
     for (const orderItem of orderItems) {
       await Item.updateOne(
         { _id: orderItem.item, quantity: { $gt: 0 } },
         { $inc: { quantity: -1 } }
       );
     }
+
+    await recordVisitEvent({ ip: req.ip, eventtype: 'PURCHASE' });
 
     return res.status(201).json({
       status: 'Success',
