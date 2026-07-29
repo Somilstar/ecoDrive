@@ -68,6 +68,41 @@ function displayCart() {
         const vehicleQuantity = document.createElement("p");
         vehicleQuantity.textContent = "Quantity: 1";
 
+        let leaseElement = null;
+
+    if (vehicle.batteryLease) {
+        leaseElement = document.createElement("div");
+        leaseElement.className = "cart-lease-details";
+
+        const originalPrice = document.createElement("p");
+        originalPrice.textContent =
+            "Original price: " +
+            formatPrice(vehicle.originalPrice);
+
+        const batteryReduction = document.createElement("p");
+        batteryReduction.textContent =
+            "Battery value removed: -" +
+            formatPrice(vehicle.batteryLease.upfrontBatteryCost);
+
+        const monthlyFee = document.createElement("p");
+        monthlyFee.textContent =
+            "Battery lease: " +
+            formatPrice(vehicle.batteryLease.monthlySubscriptionFee) +
+            " / month";
+
+        const estimatedUsage = document.createElement("p");
+        estimatedUsage.textContent =
+            "Estimated usage: " +
+            vehicle.batteryLease.estimatedMonthlyKm +
+            " km / month";
+
+        leaseElement.appendChild(originalPrice);
+        leaseElement.appendChild(batteryReduction);
+        leaseElement.appendChild(monthlyFee);
+        leaseElement.appendChild(estimatedUsage);
+     }
+
+
         const removeButton = document.createElement("button");
         removeButton.type = "button";
         removeButton.className = "remove-cart-button";
@@ -80,6 +115,9 @@ function displayCart() {
         vehicleElement.appendChild(vehicleName);
         vehicleElement.appendChild(vehiclePrice);
         vehicleElement.appendChild(vehicleQuantity);
+        if (leaseElement) {
+        vehicleElement.appendChild(leaseElement);
+        }
         vehicleElement.appendChild(removeButton);
 
         cartItemsElement.appendChild(vehicleElement);
@@ -92,6 +130,9 @@ function displayCart() {
 function removeVehicle(index) {
     cart.splice(index, 1);
 
+    if (removeVehicle?.vehicleId){
+        localStorage.removeItem( `batteryLease_${removeVehicle.vehicleId}`);
+    }
     saveCart();
     displayCart();
     if (typeof updateCartCount === "function"){
@@ -167,12 +208,25 @@ checkoutForm.addEventListener("submit", async function(event) {
         },
 
         items: cart.map(function(vehicle) {
-            return {
-                vehicleId: vehicle.vehicleId,
-                selectedCustomizationOptions:
-                    vehicle.selectedCustomizationOptions || []
-            };
-        }),
+        return {
+            vehicleId: vehicle.vehicleId,
+
+            batteryLease: vehicle.batteryLease
+                ? {
+                    accepted: true,
+                    adjustedVehiclePrice:
+                        Number(vehicle.batteryLease.adjustedVehiclePrice),
+                    monthlySubscriptionFee:
+                        Number(vehicle.batteryLease.monthlySubscriptionFee),
+                    estimatedMonthlyKm:
+                        Number(vehicle.batteryLease.estimatedMonthlyKm)
+                }
+                : null,
+
+            selectedCustomizationOptions:
+                vehicle.selectedCustomizationOptions || []
+        };
+    }),
 
         creditCard: {
             cardNumber:
@@ -215,6 +269,11 @@ checkoutForm.addEventListener("submit", async function(event) {
             );
 
             // Clear the cart after a successful checkout.
+            cart.forEach(function(vehicle){
+                if(vehicle.vehicleId){
+                    localStorage.removeItem(`batteryLease_${vehicle.vehicleId}`);
+                }
+            });
             cart = [];
             saveCart();
             checkoutForm.reset();

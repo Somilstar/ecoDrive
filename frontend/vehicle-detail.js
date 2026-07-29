@@ -36,30 +36,77 @@ function updateCartCount(){
     }
 }
 
-function addCurrentVehicleToCart(){
-    if (!currentVehicle){
-        alert("The vehicle has not loaded.");
-        return;
-    }
+function addCurrentVehicleToCart() { 
+    if (!currentVehicle) { 
+        alert("The vehicle has not loaded."); 
+        return; }
+
     const cart = loadCart();
-    const alreadyInCart = cart.some(function(cartVehicle){
-        return cartVehicle.vehicleId == currentVehicle.vid;
+
+    const vehicleId =
+        currentVehicle.vid || currentVehicle._id;
+
+    const alreadyInCart = cart.some(function (cartVehicle) {
+        return cartVehicle.vehicleId === vehicleId;
     });
-    if (alreadyInCart){
+
+    if (alreadyInCart) {
         alert("This vehicle is already in your cart.");
         return;
     }
+
+    let acceptedBatteryLease = null;
+
+    const savedLease = localStorage.getItem(
+        `batteryLease_${vehicleId}`
+    );
+
+    if (savedLease) {
+        try {
+            acceptedBatteryLease =
+                JSON.parse(savedLease);
+        } catch (error) {
+            console.error(
+                "Could not read the battery lease:",
+                error
+            );
+
+            localStorage.removeItem(
+                `batteryLease_${vehicleId}`
+            );
+        }
+    }
+
+    const regularPrice = Number(currentVehicle.price);
+
     const cartVehicle = {
-        vehicleId: currentVehicle.vid,
+        vehicleId: vehicleId,
         name: currentVehicle.name,
-        price: Number(currentVehicle.price),
+        originalPrice: regularPrice,
+
+        price: acceptedBatteryLease
+            ? Number(
+                acceptedBatteryLease.adjustedVehiclePrice
+            )
+            : regularPrice,
+
+        batteryLease: acceptedBatteryLease,
+
         selectedCustomizationOptions: []
     };
+
     cart.push(cartVehicle);
+
     saveCart(cart);
-    updateCartCount();
-    alert("Vehicle has been added to cart.");
+
+    if (typeof updateCartCount === "function") {
+        updateCartCount();
+    }
+
+    alert("Vehicle has been added to the cart.");
+
 }
+
 
 async function loadVehicle() {
 
