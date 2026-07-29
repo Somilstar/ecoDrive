@@ -482,19 +482,6 @@ h1 {
     display: flex;
     justify-content: space-between;
     margin-bottom: 18px;
-/* Admin Dashboard */
-.dashboard-container {
-    max-width: 900px;
-    margin: 60px auto;
-    text-align: center;
-    padding: 0 20px;
-}
-
-.stats-row {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
-    margin-bottom: 40px;
     font-size: 18px;
     font-weight: bold;
 }
@@ -536,6 +523,25 @@ h1 {
 .loan-message.error {
     color: #dc3545;
 }
+
+/* Admin Dashboard */
+
+.dashboard-container {
+    max-width: 900px;
+    margin: 60px auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 40px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 .admin-panels {
     display: flex;
     justify-content: center;
