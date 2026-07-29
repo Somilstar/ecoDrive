@@ -115,34 +115,35 @@ h1 {
 /* Cart and Checkout Page */
 
 .checkout-page {
-    width: 1485px;
-    margin: 95px auto 60px;
+    width: calc(100% - 150px);
+    max-width: 1485px;
+    margin: 65px auto 40px;
 }
 
 .checkout-page > h1 {
-    margin-bottom: 45px;
+    margin-bottom: 35px;
     text-align: center;
-    font-size: 40px;
+    font-size: 36px;
 }
 
 /* Places the cart and order summary beside each other */
 .checkout-layout {
     display: grid;
-    grid-template-columns: 615px 615px;
-    gap: 255px;
+    grid-template-columns: 1fr 1fr;
+    gap: 13%;
 }
 
 /* Shared styling for both white boxes */
 .checkout-box {
-    min-height: 755px;
-    padding: 55px 95px 38px;
+    min-height: 640px;
+    padding: 45px 70px 32px;
     background-color: #ffffff;
 }
 
 .checkout-box h2 {
-    margin-bottom: 35px;
+    margin-bottom: 30px;
     text-align: center;
-    font-size: 40px;
+    font-size: 36px;
 }
 
 /* Vehicle information in the cart */
@@ -238,13 +239,13 @@ h1 {
 /* Green submit button */
 .submit-order-button {
     display: block;
-    width: 330px;
-    height: 64px;
+    width: 280px;
+    height: 56px;
     margin: 0 auto;
     border: none;
     background-color: #2ecc71;
     color: #000000;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
     cursor: pointer;
 }
