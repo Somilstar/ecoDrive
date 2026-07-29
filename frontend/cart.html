@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoDrive - Cart & Checkout</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="config.js"></script>
+    <script src="cart.js" defer></script>
+</head>
+
+<body>
+    <!-- Reuses existing EcoDrive navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">EcoDrive</a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Vehicles</a></li>
+            <li><a href="index.html#compare">Compare</a></li>
+            <li><a href="account.html">My Account</a></li>
+            <li><a href="cart.html" class="active">Cart</a></li>
+            <li><a href="#" id="logoutLink">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main class="checkout-page">
+        <h1>Cart &amp; Checkout</h1>
+
+        <div class="checkout-layout">
+
+            <!-- Left cart and checkout box -->
+            <section class="checkout-box">
+                <h2>Your Cart</h2>
+
+                <!-- cart.js adds the vehicles here -->
+                <div id="cartItems"></div>
+
+                <p id="emptyCartMessage" class="empty-cart-message">
+                    Your cart is empty.
+                </p>
+
+                <form id="checkoutForm">
+                    <div class="checkout-section">
+                        <h3>Shipping Information</h3>
+
+                        <div class="checkout-field">
+                            <label for="fullName">Name:</label>
+                            <input type="text" id="fullName" required>
+                        </div>
+
+                        <div class="checkout-field">
+                            <label for="street">Address:</label>
+                            <input type="text" id="street" required>
+                        </div>
+
+                        <div class="checkout-field">
+                            <label for="city">City:</label>
+                            <input type="text" id="city" required>
+                        </div>
+
+                        <div class="checkout-field">
+                            <label for="province">Province:</label>
+
+                            <select id="province" required>
+                                <option value="">Select Province</option>
+                                <option value="AB">Alberta</option>
+                                <option value="BC">British Columbia</option>
+                                <option value="MB">Manitoba</option>
+                                <option value="NB">New Brunswick</option>
+                                <option value="NL">Newfoundland and Labrador</option>
+                                <option value="NS">Nova Scotia</option>
+                                <option value="NT">Northwest Territories</option>
+                                <option value="NU">Nunavut</option>
+                                <option value="ON">Ontario</option>
+                                <option value="PE">Prince Edward Island</option>
+                                <option value="QC">Quebec</option>
+                                <option value="SK">Saskatchewan</option>
+                                <option value="YT">Yukon</option>
+                            </select>
+                        </div>
+
+                        <div class="checkout-field">
+                            <label for="postalCode">Postal Code:</label>
+                            <input
+                                type="text"
+                                id="postalCode"
+                                placeholder="A1A 1A1"
+                                required
+                            >
+                        </div>
+
+                        <div class="checkout-field">
+                            <label for="phone">Phone:</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                    </div>
+
+                    <div class="checkout-section">
+                        <h3>Payment Information</h3>
+
+                        <p class="payment-warning">
+                            Mock payment system. Do not enter a real card.
+                        </p>
+
+                        <div class="checkout-field">
+                            <label for="cardNumber">Card Number:</label>
+                            <input
+                                type="text"
+                                id="cardNumber"
+                                placeholder="4242 4242 4242 4242"
+                                maxlength="23"
+                                required
+                            >
+                        </div>
+
+                        <div class="payment-row">
+                            <div class="checkout-field">
+                                <label for="expiry">Expiry:</label>
+                                <input type="month" id="expiry" required>
+                            </div>
+
+                            <div class="checkout-field">
+                                <label for="cvv">CVV:</label>
+                                <input
+                                    type="password"
+                                    id="cvv"
+                                    minlength="3"
+                                    maxlength="4"
+                                    required
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Right order summary box -->
+            <aside class="checkout-box summary-box">
+                <div>
+                    <h2>Order Summary</h2>
+
+                    <div class="summary-line">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+
+                    <div class="summary-line">
+                        <span>Tax:</span>
+                        <span id="tax">$0.00</span>
+                    </div>
+
+                    <div class="summary-line">
+                        <span>Total:</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                </div>
+
+                <div>
+                    <p id="checkoutMessage" class="checkout-message"></p>
+
+                    <!-- Submits checkoutForm from the other box -->
+                    <button
+                        type="submit"
+                        id="submitOrderButton"
+                        class="submit-order-button"
+                        form="checkoutForm"
+                    >
+                        Submit Order
+                    </button>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+</body>
+</html>
