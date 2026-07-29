@@ -133,6 +133,126 @@ function clearReviewPopup() {
 
 }
 
+async function loadVehicleReviews(vehicleId) { const reviewList =
+document.getElementById("reviewList");
+
+    if (!reviewList) {
+        console.error("The reviewList element was not found.");
+        return;
+    }
+
+    reviewList.innerHTML = "<p>Loading reviews...</p>";
+
+    try {
+        const response = await fetch(
+            `${CONFIG.API_BASE_URL}/api/vehicles/${vehicleId}/reviews`
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || "Failed to load reviews.");
+        }
+
+        displayVehicleReviews(data);
+
+    } catch (error) {
+        console.error("Error loading reviews:", error);
+
+        reviewList.innerHTML = "";
+
+        const errorMessage = document.createElement("p");
+        errorMessage.textContent = error.message;
+
+        reviewList.appendChild(errorMessage);
+    }
+
+}
+
+function displayVehicleReviews(data) { const reviewList =
+document.getElementById("reviewList");
+
+    reviewList.innerHTML = "";
+
+    if (!data.reviews || data.reviews.length === 0) {
+        const emptyMessage = document.createElement("p");
+        emptyMessage.textContent =
+            "No reviews yet. Be the first to review this vehicle.";
+
+        reviewList.appendChild(emptyMessage);
+        return;
+    }
+
+    const reviewSummary = document.createElement("div");
+    reviewSummary.classList.add("review-summary");
+
+    const averageStars = document.createElement("span");
+    averageStars.classList.add("review-rating");
+    averageStars.textContent = createStarRating(data.averageRating);
+
+    const averageText = document.createElement("span");
+    averageText.textContent =
+        ` ${data.averageRating}/5 (${data.reviewCount} ${data.reviewCount === 1 ? "review" : "reviews"})`;
+
+    reviewSummary.appendChild(averageStars);
+    reviewSummary.appendChild(averageText);
+
+    reviewList.appendChild(reviewSummary);
+
+    data.reviews.forEach((review) => {
+        const reviewCard = document.createElement("article");
+        reviewCard.classList.add("review-card");
+
+        const reviewHeader = document.createElement("div");
+        reviewHeader.classList.add("review-card-header");
+
+        const reviewerName = document.createElement("h3");
+
+        const firstName = review.user?.firstName || "";
+        const lastName = review.user?.lastName || "";
+
+        reviewerName.textContent =
+            `${firstName} ${lastName}`.trim() || "EcoDrive Customer";
+
+        const rating = document.createElement("span");
+        rating.classList.add("review-rating");
+        rating.textContent = createStarRating(review.rating);
+
+        reviewHeader.appendChild(reviewerName);
+        reviewHeader.appendChild(rating);
+
+        const comment = document.createElement("p");
+        comment.classList.add("review-comment");
+        comment.textContent = review.comment;
+
+        const date = document.createElement("small");
+        date.classList.add("review-date");
+        date.textContent = review.createdAt
+            ? new Date(review.createdAt).toLocaleDateString("en-CA", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric"
+              })
+            : "";
+
+        reviewCard.appendChild(reviewHeader);
+        reviewCard.appendChild(comment);
+        reviewCard.appendChild(date);
+
+        reviewList.appendChild(reviewCard);
+    });
+
+}
+
+function createStarRating(rating) { const roundedRating =
+Math.round(Number(rating));
+
+    return "★".repeat(roundedRating) +
+           "☆".repeat(5 - roundedRating);
+
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
     const vehicleId = params.get("id");
@@ -141,4 +261,5 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
     initializeReviewPopup(vehicleId);
+    loadVehicleReviews(vehicleId);
 });
