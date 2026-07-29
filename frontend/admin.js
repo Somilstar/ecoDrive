@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (data.status === 'Success') {
                 document.getElementById("totalSales").textContent = data.totalSalesRevenue.toLocaleString();
                 document.getElementById("vehiclesSold").textContent = data.totalVehiclesSold;
+                document.getElementById("activeAccounts").textContent = data.totalActiveAccounts;
 
                 const tbody = document.getElementById("salesReportBody");
                 tbody.innerHTML = "";
@@ -42,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (data.status === 'Success') {
                 document.getElementById("ordersPlaced").textContent = data.trafficMetrics.PURCHASE;
                 document.getElementById("vehiclesViewed").textContent = data.trafficMetrics.VIEW;
+                document.getElementById("reviewsSubmitted").textContent = data.totalReviewsSubmitted;
             }
         })
         .catch(error => console.error('Visit report fetch failed:', error));
