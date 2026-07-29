@@ -581,3 +581,281 @@ h1 {
 .admin-panel p {
     margin-bottom: 15px;
 }
+
+/*COMPARE VEHICLES PAGE*/
+.compare-page {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 45px 40px 80px;
+}
+
+/*Page heading*/
+.compare-header {
+    margin-bottom: 35px;
+}
+
+.compare-header h1 {
+    margin-bottom: 10px;
+    font-size: 36px;
+    text-align: left;
+}
+
+.compare-header p {
+    color: #444;
+    font-size: 18px;
+}
+
+/*Vehicle-selection panel*/
+.compare-selection-panel {
+    margin-bottom: 35px;
+    padding: 28px;
+    background-color: #ffffff;
+    border: 1px solid #e1e1e1;
+}
+
+.compare-selection-panel h2 {
+    margin-bottom: 22px;
+    font-size: 24px;
+}
+
+.compare-selectors {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-bottom: 25px;
+}
+
+.compare-selector-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.compare-selector-group label {
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.optional-text {
+    color: #777;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.vehicle-select {
+    width: 100%;
+    min-height: 45px;
+    padding: 10px 12px;
+    background-color: #ffffff;
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    color: #333;
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+}
+
+.vehicle-select:hover {
+    border-color: #999;
+}
+
+.vehicle-select:focus {
+    border-color: #2ecc71;
+    box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.15);
+}
+
+.vehicle-select option:disabled {
+    color: #aaa;
+}
+
+/*Compare button */
+.compare-button {
+    min-width: 190px;
+    padding: 12px 24px;
+    background-color: #2ecc71;
+    border: none;
+    border-radius: 2px;
+    color: #111;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.compare-button:hover {
+    background-color: #28b862;
+}
+
+.compare-button:focus {
+    outline: 2px solid #1f944e;
+    outline-offset: 2px;
+}
+
+.compare-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/*Status and validation messages*/
+.compare-message {
+    min-height: 22px;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.compare-message.loading {
+    color: #555;
+}
+
+.compare-message.error {
+    color: #e74c3c;
+}
+
+.compare-message.success {
+    color: #2e9f5b;
+}
+
+/*Comparison results*/
+.comparison-section {
+    width: 100%;
+}
+
+.compare-results {
+    width: 100%;
+}
+
+.compare-empty-state {
+    display: flex;
+    min-height: 230px;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: #dedede;
+    color: #555;
+    text-align: center;
+}
+
+.compare-empty-state p {
+    max-width: 550px;
+    line-height: 1.6;
+}
+
+/*Comparison table*/
+.comparison-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    background-color: #dedede;
+    border: 1px solid #d1d1d1;
+}
+
+.comparison-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 18px 20px;
+    border-bottom: 1px solid #c6c6c6;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.comparison-table thead th {
+    padding-top: 28px;
+    padding-bottom: 28px;
+    background-color: #d8d8d8;
+}
+
+.comparison-table tbody tr:last-child th,
+.comparison-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/*First column containing labels such as Price, Mileage, and Year*/
+.comparison-row-label {
+    width: 190px;
+    color: #222;
+    font-weight: 600;
+    text-align: left !important;
+}
+
+.comparison-corner {
+    font-size: 16px;
+}
+
+/*Vehicle headings*/
+.comparison-vehicle-heading {
+    min-width: 220px;
+}
+
+.comparison-vehicle-name {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.comparison-vehicle-model {
+    display: block;
+    color: #555;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.comparison-hot-deal {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #2ecc71;
+    color: #111;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/*View-details links*/
+.comparison-actions-row td {
+    padding-top: 24px;
+    padding-bottom: 28px;
+}
+
+.comparison-details-link {
+    display: inline-block;
+    padding: 9px 16px;
+    background-color: #ffffff;
+    border: 1px solid #555;
+    color: #222;
+    text-decoration: none;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.comparison-details-link:hover {
+    background-color: #2ecc71;
+    border-color: #2ecc71;
+    color: #111;
+}
+
+/*Tablet layout*/
+@media (max-width: 900px) {
+    .compare-page {
+        padding: 35px 25px 60px;
+    }
+
+    .compare-selectors {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .compare-header h1 {
+        font-size: 32px;
+    }
+}
+/*Compare Vehicle End*/
