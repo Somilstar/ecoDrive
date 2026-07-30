@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Item = require('../models/Item');
 const Order = require('../models/Order');
 const { recordVisitEvent } = require('../middleware/trackerMiddleware');
+const BATTERY_COST_RATIO = 0.3;
+const BASE_MONTHLY_FEE = 49;
+const PER_KM_RATE = 0.05;
+const MAX_MONTHLY_KM = 20000;
 
 // counter for the mock payment gateway, lives in app memory so it resets when the server restarts
 let paymentAttempts = 0;
@@ -87,15 +91,57 @@ const processCheckout = async (req, res) => {
           message: `Vehicle ${vehicle.name} is out of stock.`
         });
       }
+      let purchasePrice = Number(vehicle.price);
+
+    if (item.batteryLease?.accepted === true) {
+        const estimatedMonthlyKm =
+          Number(item.batteryLease.estimatedMonthlyKm);
+
+    if (
+        !Number.isFinite(estimatedMonthlyKm) ||
+        estimatedMonthlyKm < 1 ||
+        estimatedMonthlyKm > MAX_MONTHLY_KM
+    ) {
+        return res.status(400).json({
+            status: "Failure",
+            message:
+                `Battery lease mileage must be between 1 and ${MAX_MONTHLY_KM} km.`
+        });
+    }
+
+    const batteryValue = Math.round(
+        Number(vehicle.price) * BATTERY_COST_RATIO
+    );
+
+    purchasePrice =
+        Number(vehicle.price) - batteryValue;
+
+    const monthlySubscriptionFee = Number(
+        (
+            BASE_MONTHLY_FEE +
+            estimatedMonthlyKm * PER_KM_RATE
+        ).toFixed(2)
+    );
+
+    console.log("Battery lease accepted:", {
+        vehicleId: vehicle.vid,
+        originalVehiclePrice: Number(vehicle.price),
+        batteryValueRemoved: batteryValue,
+        adjustedVehiclePrice: purchasePrice,
+        estimatedMonthlyKm,
+        monthlySubscriptionFee
+    });
+  }
+
 
       orderItems.push({
         vehicleId: vehicle.vid,
         item: vehicle._id,
-        purchasePrice: vehicle.price,
+        purchasePrice: purchasePrice,
         selectedCustomizationOptions: item.selectedCustomizationOptions || []
       });
 
-      totalPrice += vehicle.price;
+      totalPrice += purchasePrice;
     }
 
     // only real payment attempts move the counter, bad attempts above dont count
