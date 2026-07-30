@@ -12,8 +12,8 @@ const handleChatbotMessage = async (req, res) => {
     }
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ 
-      model: "gemini-3.5-flash",
+    const model = genAI.getGenerativeModel({
+      model: "gemini-3.5-flash-lite",
       generationConfig: { responseMimeType: "application/json" }
     });
 
@@ -47,7 +47,7 @@ const handleChatbotMessage = async (req, res) => {
 
     const result = await model.generateContent(prompt);
     let responseText = result.response.text().trim();
-    
+
     responseText = responseText.replace(/```json/g, '').replace(/```/g, '');
     const aiResponse = JSON.parse(responseText);
 
@@ -59,9 +59,9 @@ const handleChatbotMessage = async (req, res) => {
 
   } catch (error) {
     console.error('Chatbot AI Error:', error);
-    return res.status(500).json({ 
-      status: "Failure", 
-      message: "The AI assistant is currently offline. Please try again later." 
+    return res.status(500).json({
+      status: "Failure",
+      message: "The AI assistant is currently offline. Please try again later."
     });
   }
 };
