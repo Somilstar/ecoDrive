@@ -20,7 +20,8 @@ const appendMessage = (text, sender) => {
 };
 
 // Send message to the Gemini Backend
-chatSendBtn.addEventListener('click', async () => {
+chatSendBtn.addEventListener('click', async (e) => {
+    e.preventDefault();    
     const text = chatInput.value.trim();
     if (!text) return;
 
@@ -50,13 +51,6 @@ chatSendBtn.addEventListener('click', async () => {
 
         if (response.ok && data.status === 'Success') {
             appendMessage(data.reply, 'bot');
-            
-            // Execute the routing command if the AI provided one
-            if (data.redirectUrl) {
-                setTimeout(() => {
-                    window.location.href = data.redirectUrl;
-                }, 2000); 
-            }
         } else {
             appendMessage("Sorry, the server rejected the message.", 'bot');
         }
@@ -69,6 +63,7 @@ chatSendBtn.addEventListener('click', async () => {
 // Trigger send on "Enter" key press
 chatInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-        chatSendBtn.click();
+    e.preventDefault();
+    chatSendBtn.click();
     }
 });
