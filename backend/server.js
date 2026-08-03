@@ -39,6 +39,9 @@ app.use('/api/vehicles', catalogRouter);
 const checkoutRouter = require('./routes/checkoutRouter');
 app.use('/api/checkout', checkoutRouter);
 
+const orderRouter = require('./routes/orderRouter');
+app.use('/api/orders', orderRouter);
+
 const batteryLeaseRouter = require('./routes/batteryLeaseRouter');
 app.use('/api/battery-lease', batteryLeaseRouter);
 

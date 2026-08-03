@@ -25,7 +25,7 @@ function updateCartCount(){
     if(!cartCountElement){
         return;
     }
-    const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+    localStorage.getItem("ecoDriveCart")
 
     if (!savedCart){
         cartCountElement.textContent = "0";
