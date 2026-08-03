@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 // Shipping address used for this specific order.
 const ShippingAddressSchema = new mongoose.Schema(
   {
+    fullName: { type: String, required: true, trim: true },
     street: { type: String, required: true, trim: true },
     city: { type: String, required: true, trim: true },
     province: { type: String, required: true, trim: true },
@@ -87,6 +88,28 @@ const OrderSchema = new mongoose.Schema(
       default: 'ORDERED'
     },
 
+    // Total before tax.
+    subtotal: {
+      type: Number,
+      required: true,
+      min: 0
+    },
+
+    // Stored as a decimal. For example, Ontario's 13% is stored as 0.13.
+    taxRate: {
+      type: Number,
+      required: true,
+      min: 0,
+      max: 1
+    },
+
+    taxAmount: {
+      type: Number,
+      required: true,
+      min: 0
+    },
+
+    // Final amount after tax.
     totalPrice: {
       type: Number,
       required: true,
