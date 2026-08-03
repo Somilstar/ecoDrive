@@ -1561,3 +1561,144 @@ inherit; font-size: 15px; resize: vertical; box-sizing: border-box; }
 .cart-lease-details p{
     margin: 5px 0;
 }
+
+/* Order Summary Page */
+
+.order-summary-page {
+    width: calc(100% - 220px);
+    max-width: 1200px;
+    margin: 65px auto 60px;
+}
+
+.order-confirmation-header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.order-confirmation-header h1 {
+    margin-bottom: 10px;
+    font-size: 36px;
+}
+
+.order-confirmation-header p {
+    color: #555555;
+    font-size: 17px;
+}
+
+/* Keeps the order details hidden until JavaScript loads them */
+.completed-order-layout[hidden] {
+    display: none;
+}
+
+/* Two-column desktop layout */
+.completed-order-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 25px;
+}
+
+.order-summary-card {
+    padding: 35px 40px;
+    background-color: #ffffff;
+    border: 1px solid #e3e3e3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.order-summary-card h2 {
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid #2ecc71;
+    font-size: 26px;
+}
+
+/* Individual order information rows */
+.order-detail-line {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.order-detail-line strong {
+    color: #222222;
+}
+
+.order-detail-line span {
+    color: #555555;
+    overflow-wrap: anywhere;
+}
+
+/* Purchased vehicle cards */
+.completed-order-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f2faf7;
+    border-left: 4px solid #2ecc71;
+}
+
+.completed-order-item:last-child {
+    margin-bottom: 0;
+}
+
+.completed-order-item h3 {
+    margin-bottom: 14px;
+    font-size: 22px;
+}
+
+.completed-order-item p {
+    margin-bottom: 7px;
+    color: #555555;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+/* Final payment totals */
+.completed-total-card .summary-line {
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.completed-final-total {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid #d5d5d5;
+    font-size: 24px !important;
+}
+
+/* Links underneath the order */
+.order-summary-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 10px;
+}
+
+.order-summary-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    text-decoration: none;
+}
+
+.order-account-link {
+    display: flex;
+    width: 220px;
+    height: 56px;
+    align-items: center;
+    justify-content: center;
+    background-color: #e0e0e0;
+    color: #333333;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.order-account-link:hover {
+    background-color: #d4d4d4;
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>EcoDrive - Order Summary</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="config.js"></script>
+    <script src="nav.js" defer></script>
+    <script src="order-summary.js" defer></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            EcoDrive
+        </a>
+
+        <ul class="nav-links">
+            <li>
+                <a href="index.html">Vehicles</a>
+            </li>
+
+            <li>
+                <a href="compare.html">Compare</a>
+            </li>
+
+            <li>
+                <a href="account.html">My Account</a>
+            </li>
+
+            <li>
+                <a href="cart.html" class="cartLink">
+                    Cart
+                    <span
+                        id="cartCount"
+                        class="cart-badge"
+                    >
+                        0
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#" id="logoutLink">Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="order-summary-page">
+        <section class="order-confirmation-header">
+            <h1>Order Confirmed</h1>
+
+            <p id="orderStatusMessage">
+                Loading your order information...
+            </p>
+        </section>
+
+        <p
+            id="orderSummaryMessage"
+            class="checkout-message"
+            aria-live="polite"
+        ></p>
+
+        <div
+            id="orderSummaryContent"
+            class="completed-order-layout"
+            hidden
+        >
+            <!-- General order information -->
+            <section class="order-summary-card">
+                <h2>Order Information</h2>
+
+                <div class="order-detail-line">
+                    <strong>Order Number:</strong>
+                    <span id="orderId"></span>
+                </div>
+
+                <div class="order-detail-line">
+                    <strong>Order Date:</strong>
+                    <span id="orderDate"></span>
+                </div>
+
+                <div class="order-detail-line">
+                    <strong>Status:</strong>
+                    <span id="orderStatus"></span>
+                </div>
+
+                <div class="order-detail-line">
+                    <strong>Email:</strong>
+                    <span id="customerEmail"></span>
+                </div>
+            </section>
+
+            <!-- Purchased vehicles -->
+            <section class="order-summary-card">
+                <h2>Vehicles Purchased</h2>
+
+                <div id="completedOrderItems"></div>
+            </section>
+
+            <!-- Shipping information -->
+            <section class="order-summary-card">
+                <h2>Shipping Information</h2>
+
+                <div class="order-detail-line">
+                    <strong>Name:</strong>
+                    <span id="shippingFullName"></span>
+                </div>
+
+                <div class="order-detail-line">
+                    <strong>Address:</strong>
+                    <span id="shippingStreet"></span>
+                </div>
+
+                <div class="order-detail-line">
+                    <strong>City:</strong>
+                    <span id="shippingCity"></span>
+                </div>
+
+                <div class="order-detail-line">
+                    <strong>Province:</strong>
+                    <span id="shippingProvince"></span>
+                </div>
+
+                <div class="order-detail-line">
+                    <strong>Country:</strong>
+                    <span id="shippingCountry"></span>
+                </div>
+
+                <div class="order-detail-line">
+                    <strong>Postal Code:</strong>
+                    <span id="shippingPostalCode"></span>
+                </div>
+
+                <div class="order-detail-line">
+                    <strong>Phone:</strong>
+                    <span id="shippingPhone"></span>
+                </div>
+            </section>
+
+            <!-- Payment and final totals -->
+            <section class="order-summary-card completed-total-card">
+                <h2>Payment Summary</h2>
+
+                <div class="order-detail-line">
+                    <strong>Payment Card:</strong>
+                    <span id="paymentCard"></span>
+                </div>
+
+                <div class="summary-line">
+                    <span>Subtotal:</span>
+                    <span id="completedSubtotal">$0.00</span>
+                </div>
+
+                <div class="summary-line">
+                    <span id="completedTaxLabel">Tax:</span>
+                    <span id="completedTax">$0.00</span>
+                </div>
+
+                <div class="summary-line completed-final-total">
+                    <span>Total:</span>
+                    <span id="completedTotal">$0.00</span>
+                </div>
+            </section>
+
+            <div class="order-summary-actions">
+                <a
+                    href="index.html"
+                    class="submit-order-button order-summary-button"
+                >
+                    Continue Shopping
+                </a>
+
+                <a
+                    href="account.html"
+                    class="order-account-link"
+                >
+                    Go to My Account
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
