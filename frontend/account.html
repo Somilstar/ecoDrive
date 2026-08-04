@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>EcoDrive - My Account</title>
     <link rel="stylesheet" href="style.css">
-    <script src="config.js"></script>
+    <script src="config.js" defer ></script>
     <script src="nav.js" defer></script>
     <script src="account.js" defer></script>
     <script src="index.js" defer></script>
@@ -27,6 +27,27 @@
             <p id="profileDetails">Loading profile...</p>
         </div>
         
+
+    <section class="account-orders-section">
+        <div class="account-orders-header">
+            <h2>My Orders</h2>
+            <p>View your previous EcoDrive purchases.</p>
+        </div>
+
+        <p
+            id="ordersMessage"
+            class="checkout-message"
+            aria-live="polite"
+        >
+            Loading your orders...
+        </p>
+
+        <div
+            id="ordersList"
+            class="account-orders-list"
+        ></div>
+    </section>
+
         <button id="logoutBtn" class="btn-gray btn-block" style="margin-top: 30px;">Sign Out</button>
     </div>
 </body>

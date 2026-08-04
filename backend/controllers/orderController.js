@@ -371,7 +371,68 @@ const getOrderById = async (req, res) => {
   }
 };
 
+// @desc    Get order history for the logged-in customer
+// @route   GET /api/orders/my-orders
+// @access  Private
+const getMyOrders = async (req, res) => {
+    try {
+        const orders = await Order.find({
+            customer: req.user._id
+        })
+            .sort({ createdAt: -1 })
+            .populate({
+                path: "items.item",
+                select: "name brand model modelYear"
+            })
+            .lean();
+
+        const orderHistory = orders.map(function (order) {
+            return {
+                orderId: String(order._id),
+                orderDate: order.createdAt,
+                status: order.status,
+                totalPrice: order.totalPrice,
+
+                vehicles: order.items.map(function (orderItem) {
+                    return {
+                        vehicleId: orderItem.vehicleId,
+                        name:
+                            orderItem.item?.name ||
+                            orderItem.vehicleId ||
+                            "Vehicle",
+                        brand:
+                            orderItem.item?.brand || "",
+                        model:
+                            orderItem.item?.model || "",
+                        modelYear:
+                            orderItem.item?.modelYear || "",
+                        purchasePrice:
+                            orderItem.purchasePrice
+                    };
+                })
+            };
+        });
+
+        return res.status(200).json({
+            status: "Success",
+            orders: orderHistory
+        });
+    } catch (error) {
+        console.error(
+            "Get customer orders error:",
+            error
+        );
+
+        return res.status(500).json({
+            status: "Failure",
+            message: "Could not retrieve your orders."
+        });
+    }
+};
+
+
 module.exports = {
   processCheckout,
-  getOrderById
+  getOrderById,
+  getMyOrders
 };
